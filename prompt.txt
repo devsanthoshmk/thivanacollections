@@ -2,6 +2,10 @@ Create a fully functional, modern, minimalistic, sleek, and elegant e-commerce w
 
 Tech stack requirements:
 
+USE LATEST VERSIONS OF EVERYTHING LISTED HERE
+
+USE SUPABASE FOR DATABASE I'LL GIVE YOU MY API KEY
+
 Vue.js 3 (Composition API, script setup, no type script)
 
 Tailwind CSS (utility-first responsive design)
