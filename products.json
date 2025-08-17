@@ -1,82 +1,82 @@
 {
     "p1": {
-        "discription": "Elegant Gold-Plated Necklace. Price: $120. Material: 18k Gold Plated. Policy: 30-day return. Hashtags: #gold #necklace #elegant",
+        "discription": "Elegant Silk Blouse. Price: $120. Material: Premium Silk. Policy: 30-day return. Hashtags: #silk #blouse #elegant",
         "images": [
             "images/pic_1.1.jpeg",
             "images/pic_1.2.jpeg"
         ],
-        "name": "Aria Necklace",
+        "name": "Aria Silk Blouse",
         "price": 120,
-        "category": "Necklaces"
+        "category": "Women's Collection"
     },
     "p2": {
-        "discription": "Minimalist Silver Bracelet. Price: $85. Material: Sterling Silver. Policy: 30-day return. Hashtags: #silver #bracelet #minimalist",
+        "discription": "Minimalist Cotton T-Shirt. Price: $85. Material: Organic Cotton. Policy: 30-day return. Hashtags: #cotton #tshirt #minimalist",
         "images": [
             "images/pic_1.3.jpeg",
             "images/pic_1.4.jpeg"
         ],
-        "name": "Luna Bracelet",
+        "name": "Luna Cotton Tee",
         "price": 85,
-        "category": "Braclets"
+        "category": "Women's Collection"
     },
     "p3": {
-        "discription": "Rose Gold Earrings. Price: $95. Material: Rose Gold Plated. Policy: 30-day return. Hashtags: #rosegold #earrings #stylish",
+        "discription": "Designer Jeans. Price: $95. Material: Premium Denim. Policy: 30-day return. Hashtags: #denim #jeans #stylish",
         "images": [
             "images/pic_1.5.jpeg",
             "images/pic_1.6.jpeg"
         ],
-        "name": "Helia Earrings",
+        "name": "Helia Designer Jeans",
         "price": 95,
-        "category": "Earrings"
+        "category": "Women's Collection"
     },
     "p4": {
-        "discription": "Classic Pearl Necklace. Price: $150. Material: Freshwater Pearls, Silver Clasp. Policy: 30-day return. Hashtags: #pearls #classic #timeless",
+        "discription": "Classic Wool Coat. Price: $150. Material: Premium Wool, Silk Lining. Policy: 30-day return. Hashtags: #wool #coat #timeless",
         "images": [
             "images/product-item-1.jpg",
             "images/product-item-2.jpg"
         ],
-        "name": "Grace Necklace",
+        "name": "Grace Wool Coat",
         "price": 150,
-        "category": "Necklaces"
+        "category": "Women's Collection"
     },
     "p5": {
-        "discription": "Bohemian Beaded Bracelet. Price: $65. Material: Assorted Beads, Leather Cord. Policy: 30-day return. Hashtags: #boho #beaded #bracelet",
+        "discription": "Bohemian Summer Dress. Price: $65. Material: Rayon, Cotton Blend. Policy: 30-day return. Hashtags: #boho #dress #summer",
         "images": [
             "images/product-item-3.jpg",
             "images/product-item-4.jpg"
         ],
-        "name": "Terra Bracelet",
+        "name": "Terra Summer Dress",
         "price": 65,
-        "category": "Bracelets"
+        "category": "Women's Collection"
     },
     "p6": {
-        "discription": "Diamond Stud Earrings. Price: $250. Material: 14k White Gold, Diamonds. Policy: 30-day return. Hashtags: #diamond #studs #luxury",
+        "discription": "Premium Leather Jacket. Price: $250. Material: Genuine Leather. Policy: 30-day return. Hashtags: #leather #jacket #luxury",
         "images": [
             "images/product-item-5.jpg",
             "images/product-item-6.jpg"
         ],
-        "name": "Stella Earrings",
+        "name": "Stella Leather Jacket",
         "price": 250,
-        "category": "Earrings"
+        "category": "Women's Collection"
     },
     "p7": {
-        "discription": "Modern Geometric Necklace. Price: $110. Material: Gold Plated Brass. Policy: 30-day return. Hashtags: #modern #geometric #gold",
+        "discription": "Modern Linen Shirt. Price: $110. Material: Premium Linen. Policy: 30-day return. Hashtags: #linen #shirt #modern",
         "images": [
             "images/product-item-7.jpg",
             "images/product-item-8.jpg"
         ],
-        "name": "Orion Necklace",
+        "name": "Orion Linen Shirt",
         "price": 110,
-        "category": "Necklaces"
+        "category": "Men's Collection"
     },
     "p8": {
-        "discription": "Infinity Charm Bracelet. Price: $90. Material: Sterling Silver. Policy: 30-day return. Hashtags: #infinity #charm #silver",
+        "discription": "Classic Cotton Polo. Price: $90. Material: Pique Cotton. Policy: 30-day return. Hashtags: #polo #cotton #classic",
         "images": [
             "images/product-item-9.jpg",
             "images/product-item-10.jpg"
         ],
-        "name": "Seraphina Bracelet",
+        "name": "Seraphina Cotton Polo",
         "price": 90,
-        "category": "Bracelets"
+        "category": "Men's Collection"
     }
 }

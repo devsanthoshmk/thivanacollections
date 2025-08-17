@@ -16,6 +16,13 @@ export const useCartStore = () => {
     cart.value = cart.value.filter(item => item.id !== productId)
   }
 
+  const updateQuantity = (productId, quantity) => {
+    const item = cart.value.find(item => item.id === productId)
+    if (item) {
+      item.quantity = quantity
+    }
+  }
+
   const cartCount = computed(() => {
     return cart.value.reduce((total, item) => total + item.quantity, 0)
   })
@@ -24,5 +31,5 @@ export const useCartStore = () => {
     return cart.value.reduce((total, item) => total + (item.price * item.quantity), 0)
   })
 
-  return { cart, addToCart, removeFromCart, cartCount, cartTotal }
+  return { cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal }
 }

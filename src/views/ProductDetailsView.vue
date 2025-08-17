@@ -18,7 +18,7 @@
           <li>
             <div class="flex items-center">
               <vue-feather type="chevron-right" class="h-5 w-5 text-gray-400"></vue-feather>
-              <span class="ml-1 text-gray-500 dark:text-gray-400 md:ml-2" aria-current="page">{{ product?.name || 'Product' }}</span>
+              <span class="ml-1 text-gray-500 dark:text-gray-400 md:ml-2" aria-current="page">{{ product?.name || 'Item' }}</span>
             </div>
           </li>
         </ol>
@@ -97,19 +97,19 @@
             <div class="grid grid-cols-2 gap-4">
               <div class="flex items-center">
                 <vue-feather type="check-circle" class="h-5 w-5 text-accent mr-2"></vue-feather>
-                <span class="text-gray-600 dark:text-gray-400">Authentic Materials</span>
+                <span class="text-gray-600 dark:text-gray-400">Premium Materials</span>
               </div>
               <div class="flex items-center">
                 <vue-feather type="check-circle" class="h-5 w-5 text-accent mr-2"></vue-feather>
-                <span class="text-gray-600 dark:text-gray-400">Handcrafted</span>
+                <span class="text-gray-600 dark:text-gray-400">Ethically Made</span>
               </div>
               <div class="flex items-center">
                 <vue-feather type="check-circle" class="h-5 w-5 text-accent mr-2"></vue-feather>
-                <span class="text-gray-600 dark:text-gray-400">1 Year Warranty</span>
+                <span class="text-gray-600 dark:text-gray-400">Quality Guaranteed</span>
               </div>
               <div class="flex items-center">
                 <vue-feather type="check-circle" class="h-5 w-5 text-accent mr-2"></vue-feather>
-                <span class="text-gray-600 dark:text-gray-400">Gift Box Included</span>
+                <span class="text-gray-600 dark:text-gray-400">Care Instructions Included</span>
               </div>
             </div>
           </div>
@@ -138,8 +138,8 @@
       
       <div v-else class="text-center py-16">
         <vue-feather type="alert-circle" class="h-16 w-16 text-gray-400 mx-auto mb-4"></vue-feather>
-        <h2 class="font-serif text-3xl font-bold text-secondary dark:text-primary mb-2">Product Not Found</h2>
-        <p class="text-gray-600 dark:text-gray-400 mb-6">The product you're looking for doesn't exist or has been removed.</p>
+        <h2 class="font-serif text-3xl font-bold text-secondary dark:text-primary mb-2">Item Not Found</h2>
+        <p class="text-gray-600 dark:text-gray-400 mb-6">The item you're looking for doesn't exist or has been removed.</p>
         <router-link to="/shop">
           <Button label="Continue Shopping" class="p-button-lg" />
         </router-link>
@@ -157,8 +157,8 @@
             <TabPanel value="0">
               <div class="prose max-w-none">
                 <p>{{ product.discription }}</p>
-                <p class="mt-4">Each piece in our collection is meticulously crafted by skilled artisans who bring years of expertise and passion to their work. We source only the finest materials to ensure that every item meets our exacting standards of quality and beauty.</p>
-                <p class="mt-4">Whether you're looking for a statement piece for a special occasion or an everyday accessory that adds a touch of elegance to your ensemble, our collection offers something for every style and preference.</p>
+                <p class="mt-4">Each garment in our collection is meticulously crafted by skilled designers who bring years of expertise and passion to their work. We source only the finest materials to ensure that every item meets our exacting standards of quality and style.</p>
+                <p class="mt-4">Whether you're looking for a statement piece for a special occasion or an everyday outfit that adds a touch of elegance to your wardrobe, our collection offers something for every style and preference.</p>
               </div>
             </TabPanel>
             <TabPanel value="1">
@@ -171,7 +171,7 @@
                     <span class="ml-2 font-semibold">Sarah Johnson</span>
                     <span class="ml-auto text-gray-500 dark:text-gray-400 text-sm">2 days ago</span>
                   </div>
-                  <p class="text-gray-600 dark:text-gray-400">Absolutely stunning piece! The craftsmanship is exceptional and it looks even better in person. Highly recommend!</p>
+                  <p class="text-gray-600 dark:text-gray-400">Absolutely stunning outfit! The craftsmanship is exceptional and it looks even better in person. Highly recommend!</p>
                 </div>
                 <div class="border-b border-gray-200 dark:border-gray-700 pb-6">
                   <div class="flex items-center mb-2">
@@ -181,7 +181,7 @@
                     <span class="ml-2 font-semibold">Michael Chen</span>
                     <span class="ml-auto text-gray-500 dark:text-gray-400 text-sm">1 week ago</span>
                   </div>
-                  <p class="text-gray-600 dark:text-gray-400">Bought this as an anniversary gift for my wife and she absolutely loves it. The quality is outstanding and the packaging was beautiful.</p>
+                  <p class="text-gray-600 dark:text-gray-400">Bought this as an anniversary gift for my wife and she absolutely loves it. The quality is outstanding and the fit was perfect.</p>
                 </div>
                 <div>
                   <h3 class="font-serif text-xl font-bold text-secondary dark:text-primary mb-4">Write a Review</h3>
@@ -211,7 +211,7 @@
                   </div>
                   <div>
                     <h4 class="font-semibold text-secondary dark:text-primary mb-2">Returns</h4>
-                    <p class="text-gray-600 dark:text-gray-400">We accept returns within 30 days of purchase. Items must be in their original condition with all tags attached. Please contact our customer service team to initiate a return.</p>
+                    <p class="text-gray-600 dark:text-gray-400">We accept returns within 30 days of purchase. Items must be in their original condition with all tags attached and unworn. Please contact our customer service team to initiate a return.</p>
                   </div>
                   <div>
                     <h4 class="font-semibold text-secondary dark:text-primary mb-2">International Shipping</h4>
@@ -228,7 +228,7 @@
       <section v-if="relatedProducts && Object.keys(relatedProducts).length" class="mt-24">
         <div class="text-center mb-12">
           <h2 class="font-serif text-4xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">You May Also Like</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Discover more pieces from our collection</p>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Discover more styles from our collection</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <ProductCard v-for="(relatedProduct, id) in relatedProducts" :key="id" :product="{...relatedProduct, id}" data-aos="fade-up" :data-aos-delay="100 * (Object.keys(relatedProducts).indexOf(id) % 4)" />

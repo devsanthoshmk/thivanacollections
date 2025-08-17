@@ -21,7 +21,7 @@
               <vue-feather type="map-pin" class="h-8 w-8 text-accent"></vue-feather>
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-4">Visit Us</h3>
-            <p class="text-gray-600 dark:text-gray-400 mb-2">123 Jewelry Avenue</p>
+            <p class="text-gray-600 dark:text-gray-400 mb-2">123 Fashion Street</p>
             <p class="text-gray-600 dark:text-gray-400 mb-2">Mumbai, Maharashtra 400001</p>
             <p class="text-gray-600 dark:text-gray-400">India</p>
           </div>
@@ -90,7 +90,7 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="font-serif text-4xl md:text-5xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Find Us</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Visit our flagship store in the heart of Mumbai</p>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Visit our flagship boutique in the heart of Mumbai</p>
         </div>
         
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
@@ -98,7 +98,7 @@
             <div class="text-center">
               <vue-feather type="map" class="h-16 w-16 text-gray-500 dark:text-gray-400 mx-auto mb-4"></vue-feather>
               <p class="text-gray-500 dark:text-gray-400">Interactive Map</p>
-              <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">123 Jewelry Avenue, Mumbai, Maharashtra 400001</p>
+              <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">123 Fashion Street, Mumbai, Maharashtra 400001</p>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="font-serif text-4xl md:text-5xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Frequently Asked Questions</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Find answers to common questions about our products and services</p>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Find answers to common questions about our clothing and services</p>
         </div>
         
         <div class="max-w-3xl mx-auto space-y-6">
@@ -136,21 +136,21 @@
           
           <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
             <div class="p-6 cursor-pointer flex justify-between items-center">
-              <h3 class="font-serif text-xl font-bold text-secondary dark:text-primary">Do you offer jewelry customization?</h3>
+              <h3 class="font-serif text-xl font-bold text-secondary dark:text-primary">Do you offer clothing customization?</h3>
               <vue-feather type="chevron-down" class="h-5 w-5 text-accent"></vue-feather>
             </div>
             <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
-              Yes, we offer customization services for many of our pieces. Please contact us with your specific requirements and our design team will be happy to assist you.
+              Yes, we offer customization services for many of our garments. Please contact us with your specific requirements and our design team will be happy to assist you.
             </div>
           </div>
           
           <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="500">
             <div class="p-6 cursor-pointer flex justify-between items-center">
-              <h3 class="font-serif text-xl font-bold text-secondary dark:text-primary">How do I care for my jewelry?</h3>
+              <h3 class="font-serif text-xl font-bold text-secondary dark:text-primary">How do I care for my clothing?</h3>
               <vue-feather type="chevron-down" class="h-5 w-5 text-accent"></vue-feather>
             </div>
             <div class="px-6 pb-6 text-gray-600 dark:text-gray-400">
-              Each piece comes with specific care instructions. In general, we recommend storing jewelry in a dry place, avoiding contact with chemicals, and cleaning gently with a soft cloth.
+              Each garment comes with specific care instructions. In general, we recommend following the care label instructions, washing similar colors together, and ironing at appropriate temperatures.
             </div>
           </div>
         </div>

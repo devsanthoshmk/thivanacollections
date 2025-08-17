@@ -8,7 +8,7 @@
         <div class="divider mb-6" data-aos="fade-up" data-aos-delay="100">
           <span>Thivana Collections</span>
         </div>
-        <p class="text-lg md:text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">Crafting elegance since 2010, our journey has been defined by passion, precision, and an unwavering commitment to excellence.</p>
+        <p class="text-lg md:text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">Crafting style since 2010, our journey has been defined by passion, precision, and an unwavering commitment to fashion excellence.</p>
       </div>
     </section>
 
@@ -18,8 +18,8 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div data-aos="fade-right">
             <h2 class="font-serif text-4xl font-bold text-secondary dark:text-primary mb-6">Our Heritage</h2>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">Thivana Collections was born from a vision to create jewelry that transcends time. Founded in 2010 by master jeweler Thivana Rajan, our brand has grown from a small boutique to a globally recognized name in luxury jewelry.</p>
-            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">Each piece in our collection tells a story of craftsmanship, innovation, and the relentless pursuit of perfection. We believe that jewelry is not merely an accessory, but a reflection of one's personality and a celebration of life's most precious moments.</p>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">Thivana Collections was born from a vision to create clothing that transcends trends. Founded in 2010 by fashion designer Thivana Rajan, our brand has grown from a small boutique to a globally recognized name in premium fashion.</p>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">Each piece in our collection tells a story of craftsmanship, innovation, and the relentless pursuit of perfection. We believe that clothing is not merely apparel, but a reflection of one's personality and a celebration of individual style.</p>
             <div class="flex items-center mt-8">
               <div class="mr-6">
                 <div class="text-4xl font-bold text-accent mb-2">13+</div>
@@ -47,7 +47,7 @@
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="font-serif text-4xl md:text-5xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Our Values</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">The principles that guide every piece we create</p>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">The principles that guide every garment we create</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -56,7 +56,7 @@
               <vue-feather type="award" class="h-8 w-8 text-accent"></vue-feather>
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-4">Excellence</h3>
-            <p class="text-gray-600 dark:text-gray-400">We never compromise on quality. Every piece is meticulously crafted to meet the highest standards of excellence.</p>
+            <p class="text-gray-600 dark:text-gray-400">We never compromise on quality. Every garment is meticulously crafted to meet the highest standards of excellence.</p>
           </div>
           
           <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center card-modern" data-aos="fade-up" data-aos-delay="300">
@@ -64,7 +64,7 @@
               <vue-feather type="heart" class="h-8 w-8 text-accent"></vue-feather>
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-4">Passion</h3>
-            <p class="text-gray-600 dark:text-gray-400">Our love for jewelry drives us to create pieces that evoke emotion and celebrate life's special moments.</p>
+            <p class="text-gray-600 dark:text-gray-400">Our love for fashion drives us to create clothing that evokes emotion and celebrates life's special moments.</p>
           </div>
           
           <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center card-modern" data-aos="fade-up" data-aos-delay="400">
@@ -72,7 +72,7 @@
               <vue-feather type="users" class="h-8 w-8 text-accent"></vue-feather>
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-4">Integrity</h3>
-            <p class="text-gray-600 dark:text-gray-400">We believe in ethical sourcing, transparent practices, and building lasting relationships with our clients.</p>
+            <p class="text-gray-600 dark:text-gray-400">We believe in ethical production, transparent practices, and building lasting relationships with our clients.</p>
           </div>
         </div>
       </div>
@@ -82,8 +82,8 @@
     <section class="py-20">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="font-serif text-4xl md:text-5xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Meet Our Artisans</h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">The talented individuals behind our exquisite creations</p>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Meet Our Designers</h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">The talented individuals behind our exclusive collections</p>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -92,7 +92,7 @@
               <img src="/images/pic_1.2.jpeg" alt="Thivana Rajan" class="w-full h-full object-cover">
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-2">Thivana Rajan</h3>
-            <p class="text-accent font-semibold mb-4">Founder & Master Jeweler</p>
+            <p class="text-accent font-semibold mb-4">Founder & Head Designer</p>
             <p class="text-gray-600 dark:text-gray-400">With over 20 years of experience, Thivana's vision and expertise are the cornerstone of our brand.</p>
           </div>
           
@@ -101,8 +101,8 @@
               <img src="/images/pic_1.3.jpeg" alt="Ananya Sharma" class="w-full h-full object-cover">
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-2">Ananya Sharma</h3>
-            <p class="text-accent font-semibold mb-4">Head Designer</p>
-            <p class="text-gray-600 dark:text-gray-400">Ananya brings contemporary flair to traditional designs, creating pieces that are both timeless and modern.</p>
+            <p class="text-accent font-semibold mb-4">Creative Director</p>
+            <p class="text-gray-600 dark:text-gray-400">Ananya brings contemporary flair to classic silhouettes, creating garments that are both timeless and modern.</p>
           </div>
           
           <div class="text-center" data-aos="fade-up" data-aos-delay="400">
@@ -110,8 +110,8 @@
               <img src="/images/pic_1.4.jpeg" alt="Rajiv Menon" class="w-full h-full object-cover">
             </div>
             <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-2">Rajiv Menon</h3>
-            <p class="text-accent font-semibold mb-4">Master Craftsman</p>
-            <p class="text-gray-600 dark:text-gray-400">Rajiv's meticulous attention to detail ensures that every piece meets our exacting standards of quality.</p>
+            <p class="text-accent font-semibold mb-4">Production Manager</p>
+            <p class="text-gray-600 dark:text-gray-400">Rajiv's meticulous attention to detail ensures that every garment meets our exacting standards of quality.</p>
           </div>
         </div>
       </div>

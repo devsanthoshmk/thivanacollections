@@ -7,10 +7,10 @@
       <div class="container mx-auto px-6 h-full flex flex-col justify-center items-center text-center relative z-10">
         <h1 class="font-serif text-5xl md:text-6xl font-bold mb-6" data-aos="fade-up">Our Collection</h1>
         <div class="divider mb-6" data-aos="fade-up" data-aos-delay="100">
-          <span>Exquisite Jewelry</span>
+          <span>Premium Fashion</span>
         </div>
         <p class="text-lg md:text-xl max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">Discover our curated
-          selection of fine jewelry, crafted with precision and passion.</p>
+          selection of premium clothing, crafted with precision and passion.</p>
       </div>
     </section>
 
@@ -19,9 +19,9 @@
       <!-- Filters Section -->
       <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-12" data-aos="fade-up">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-          <h2 class="font-serif text-2xl font-bold text-gray-800 dark:text-white mb-4 md:mb-0">Filter Products</h2>
+          <h2 class="font-serif text-2xl font-bold text-gray-800 dark:text-white mb-4 md:mb-0">Filter Clothing</h2>
           <div class="flex items-center">
-            <span class="text-gray-600 dark:text-gray-400 mr-4">{{ totalRecords }} products found</span>
+            <span class="text-gray-600 dark:text-gray-400 mr-4">{{ totalRecords }} items found</span>
             <button
               class="inline-flex items-center px-3 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               @click="showAdvancedFilters = !showAdvancedFilters">
@@ -45,7 +45,7 @@
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
               </div>
-              <input type="text" v-model="searchQuery" placeholder="Search for products..."
+              <input type="text" v-model="searchQuery" placeholder="Search for clothing..."
                 class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />
             </div>
           </div>
@@ -87,9 +87,9 @@
               </div>
             </div>
             <div>
-              <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Material</label>
+              <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Fabric</label>
               <div class="flex flex-wrap gap-2 mt-2">
-                <button v-for="material in ['gold', 'silver', 'platinum', 'diamond']" :key="material"
+                <button v-for="material in ['cotton', 'silk', 'linen', 'wool']" :key="material"
                   class="px-3 py-1 text-sm font-medium rounded-md border transition-colors"
                   :class="selectedMaterials.includes(material)
                     ? 'bg-blue-600 text-white border-blue-600'
@@ -112,7 +112,7 @@
       <!-- No Results -->
       <div v-else class="text-center py-16">
         <vue-feather type="search" class="h-16 w-16 text-gray-400 mx-auto mb-4"></vue-feather>
-        <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-2">No products found</h3>
+        <h3 class="font-serif text-2xl font-bold text-secondary dark:text-primary mb-2">No items found</h3>
         <p class="text-gray-600 dark:text-gray-400 mb-6">Try adjusting your filters or search terms</p>
         <Button label="Reset Filters" class="p-button-outlined" @click="resetFilters" />
       </div>
@@ -127,10 +127,10 @@
     <section class="py-16 bg-gradient-to-r from-accent/10 to-accent/5 dark:from-accent/5 dark:to-accent/2">
       <div class="container mx-auto px-6">
         <div class="max-w-2xl mx-auto text-center">
-          <h2 class="font-serif text-3xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Stay
-            Updated</h2>
+          <h2 class="font-serif text-3xl font-bold text-secondary dark:text-primary mb-4" data-aos="fade-up">Fashion
+            Updates</h2>
           <p class="text-gray-600 dark:text-gray-400 mb-6" data-aos="fade-up" data-aos-delay="100">Subscribe to our
-            newsletter for new arrivals and exclusive offers</p>
+            newsletter for new collections and exclusive offers</p>
 
           <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" data-aos="fade-up" data-aos-delay="200">
             <InputText type="email" placeholder="Your email address" class="flex-grow" />

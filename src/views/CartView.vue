@@ -5,7 +5,7 @@
       <div class="container mx-auto px-6">
         <h1 class="font-serif text-5xl font-bold text-center mb-4" data-aos="fade-up">Shopping Cart</h1>
         <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-          Review your selected items and proceed to checkout
+          Review your selected fashion items and proceed to checkout
         </p>
       </div>
     </div>
@@ -87,7 +87,7 @@
               <div class="mb-6">
                 <div class="flex items-center mb-3">
                   <vue-feather type="truck" class="h-5 w-5 text-accent mr-2"></vue-feather>
-                  <p class="text-sm">Free shipping on orders over $100</p>
+                  <p class="text-sm">Free shipping on fashion orders over $100</p>
                 </div>
                 <div class="flex items-center">
                   <vue-feather type="shield" class="h-5 w-5 text-accent mr-2"></vue-feather>
@@ -123,7 +123,7 @@
           <vue-feather type="shopping-bag" class="h-12 w-12 text-accent"></vue-feather>
         </div>
         <h2 class="font-serif text-4xl font-bold mb-4">Your cart is empty</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-8">Looks like you haven't added anything to your cart yet. Start shopping to fill it up!</p>
+        <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-8">Looks like you haven't added any fashion items to your cart yet. Start shopping to fill it up!</p>
         <router-link to="/shop">
           <Button label="Continue Shopping" class="p-button-lg btn-modern flex items-center justify-center">
             <vue-feather type="arrow-right" class="h-5 w-5 mr-2"></vue-feather>

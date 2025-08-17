@@ -8,7 +8,7 @@
             <img src="../assets/logo.jpg" alt="Thivana Collections Logo" class="h-12 mr-3">
             <span class="font-serif text-2xl font-bold text-secondary dark:text-primary">Thivana Collections</span>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-md">Crafting timeless elegance since 2010. Our jewelry is designed to celebrate life's most precious moments with exceptional craftsmanship and attention to detail.</p>
+          <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-md">Crafting timeless fashion since 2010. Our clothing is designed to celebrate your personal style with exceptional craftsmanship and attention to detail.</p>
           <div class="flex space-x-4">
             <a href="#" class="bg-gray-200 dark:bg-gray-700 hover:bg-accent hover:text-white text-gray-600 dark:text-gray-300 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300">
               <vue-feather type="facebook" class="h-5 w-5"></vue-feather>
@@ -53,7 +53,7 @@
           <ul class="space-y-3">
             <li class="flex items-start">
               <vue-feather type="map-pin" class="h-5 w-5 text-accent mr-3 mt-0.5"></vue-feather>
-              <span class="text-gray-600 dark:text-gray-400">123 Jewelry Avenue, Mumbai, Maharashtra 400001</span>
+              <span class="text-gray-600 dark:text-gray-400">123 Fashion Street, Mumbai, Maharashtra 400001</span>
             </li>
             <li class="flex items-center">
               <vue-feather type="phone" class="h-5 w-5 text-accent mr-3"></vue-feather>
@@ -72,7 +72,7 @@
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-4 md:mb-0">
             <h3 class="font-serif text-xl font-bold text-secondary dark:text-primary mb-2">Subscribe to Our Newsletter</h3>
-            <p class="text-gray-600 dark:text-gray-400">Get the latest updates on new collections and exclusive offers.</p>
+            <p class="text-gray-600 dark:text-gray-400">Get the latest updates on new fashion collections and exclusive offers.</p>
           </div>
           <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
             <input type="email" placeholder="Your email address" class="px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent bg-white dark:bg-gray-700 flex-grow">
