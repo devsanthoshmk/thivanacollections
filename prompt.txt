@@ -1,0 +1,113 @@
+Create a fully functional, modern, minimalistic, sleek, and elegant e-commerce website as a CSR (Client-Side Rendered) Vue 3 application.
+
+Tech stack requirements:
+
+Vue.js 3 (Composition API, script setup, no type script)
+
+Tailwind CSS (utility-first responsive design)
+
+PrimeVue (cards, buttons, inputs, dialogs, dropdowns, etc.)
+
+lucid-vue-next (for Lucide icons)
+
+AOS (Animate on Scroll for smooth animations)
+
+Responsive, mobile-first, SEO-friendly
+
+Features:
+
+Homepage
+
+Hero banner with brand tagline and CTA.
+
+Featured products section (grid layout with PrimeVue cards + hover animations).
+
+Categories section (filtering support).
+
+Smooth AOS fade/slide animations.
+
+Product Listing Page
+
+Responsive grid with PrimeVue product cards.
+
+Cards should include product image, short description, price, hashtags, and hover effects.
+
+Search bar + filters (category, price range).
+
+Pagination or infinite scroll.
+
+Product Details Page
+
+Full product description (material, price, policies, hashtags).
+
+Image carousel (PrimeVue carousel).
+
+Add-to-cart button with animation.
+
+Related products section.
+
+Cart and Checkout
+
+Cart page with product list, quantity selector, subtotal, taxes, and total.
+
+Checkout form (name, address, phone, payment mock).
+
+Elegant confirmation page.
+
+Navigation and Layout
+
+Sticky Navbar with brand logo, menu items (Home, Shop, About, Contact, Cart).
+
+Footer with social links (using lucid-vue-next icons).
+
+Dark mode toggle.
+
+Consistent Tailwind-based spacing, typography, and colors.
+
+Data Handling:
+
+The products are stored in products.json located in the root directory.
+
+Use this product data JSON to populate products dynamically:
+
+{
+"<product_id>": {
+"discription": "string (product description, includes price, material, policy, hashtags, etc.)",
+"images": [
+"string (image URL)",
+"string (image URL)"
+]
+},
+"<product_id>": {
+"discription": "string",
+"images": [
+...
+]
+}
+}
+
+Parse this JSON into a products store/composable and use it across pages.
+
+Ensure fallback images, proper error handling, and responsive behavior.
+
+Additional Requirements:
+
+Mobile-friendly grid and typography.
+
+Elegant Tailwind color palette (minimal, white/gray with accent).
+
+Reusable Vue components (Navbar.vue, ProductCard.vue, ProductList.vue, Cart.vue, etc.).
+
+Add smooth animations with AOS.
+
+Use Lucide icons for cart, search, social media, and UI elements.
+
+Clean, production-ready code with comments.
+
+Branding:
+
+Brand name: Thivana Collections
+
+Logo: logo.jpg located in the root directory
+
+Goal: Deliver a ready-to-run CSR Vue 3 e-commerce site that looks premium, modern, and elegant, using the above stack, product JSON data, and branding details.
