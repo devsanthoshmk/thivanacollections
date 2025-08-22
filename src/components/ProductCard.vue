@@ -3,7 +3,7 @@
     <template #header>
       <div class="img-hover-zoom relative">
         <router-link :to="'/product/' + product.id">
-          <img :src="'/' + product.images[0]" @error="imageUrlAlt" :alt="product.name" class="w-full h-72 object-cover">
+          <img :src="product.images[0]" @error="imageUrlAlt" :alt="product.name" class="w-full h-72 object-cover">
           <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
             <Button icon="pi pi-eye" class="p-button-rounded p-button-outlined opacity-0 hover:opacity-100 transition-opacity duration-300" />
           </div>
@@ -28,7 +28,7 @@
     </template>
     <template #footer>
       <div class="flex flex-wrap mt-4 mb-2">
-        <span v-for="tag in hashtags" :key="tag" class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full px-3 py-1 text-xs font-semibold mr-2 mb-2 hover:bg-accent hover:text-white transition-colors duration-300 cursor-pointer">#{{ tag }}</span>
+        <span v-for="tag in product.hashtags" :key="tag" class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full px-3 py-1 text-xs font-semibold mr-2 mb-2 hover:bg-accent hover:text-white transition-colors duration-300 cursor-pointer">{{ tag }}</span>
       </div>
       <div class="flex justify-between items-center mt-4">
         <Button icon="pi pi-heart" class="p-button-rounded p-button-outlined p-button-sm" @click="toggleWishlist" />
@@ -63,12 +63,7 @@ const shortDescription = computed(() => {
   return props.product.discription.split('.')[0]
 })
 
-const hashtags = computed(() => {
-  if (!props.product.discription) return []
-  const matches = props.product.discription.match(/#(\w+)/g)
-  if (!matches) return []
-  return matches.map(tag => tag.substring(1))
-})
+
 
 const toggleWishlist = () => {
   // Implement wishlist functionality

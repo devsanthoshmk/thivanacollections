@@ -30,7 +30,7 @@
         <!-- Product Images -->
         <div data-aos="fade-right">
           <div class="mb-4 img-hover-zoom rounded-xl overflow-hidden shadow-xl">
-            <img :src="'/' + product.images[activeImageIndex]" :alt="product.name" class="w-full h-auto object-cover">
+            <img :src="product.images[activeImageIndex]" :alt="product.name" class="w-full h-auto object-cover">
           </div>
           
           <!-- Thumbnail Gallery -->
@@ -39,7 +39,7 @@
                  class="cursor-pointer rounded-lg overflow-hidden border-2 transition-all duration-300"
                  :class="activeImageIndex === index ? 'border-accent' : 'border-transparent'"
                  @click="activeImageIndex = index">
-              <img :src="'/' + image" :alt="`${product.name} ${index + 1}`" class="w-full h-24 object-cover">
+              <img :src="image" :alt="`${product.name} ${index + 1}`" class="w-full h-24 object-cover">
             </div>
           </div>
         </div>

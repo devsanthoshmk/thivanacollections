@@ -166,4 +166,5 @@ const featuredProducts = computed(() => {
   // return the first 4 products
   return Object.fromEntries(Object.entries(products.value).slice(0, 4))
 })
+console.log(featuredProducts)
 </script>

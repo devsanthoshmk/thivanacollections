@@ -25,7 +25,7 @@
                    data-aos="fade-up" :data-aos-delay="100 * index">
                 <div class="flex items-center mb-4 md:mb-0">
                   <div class="img-hover-zoom rounded-lg overflow-hidden mr-6">
-                    <img :src="'/' + item.images[0]" :alt="item.name" class="w-24 h-24 object-cover">
+                    <img :src="item.images[0]" :alt="item.name" class="w-24 h-24 object-cover">
                   </div>
                   <div>
                     <h3 class="font-serif text-xl font-bold">{{ item.name }}</h3>

@@ -1,82 +1,335 @@
 {
-    "p1": {
-        "discription": "Elegant Silk Blouse. Price: $120. Material: Premium Silk. Policy: 30-day return. Hashtags: #silk #blouse #elegant",
-        "images": [
-            "images/pic_1.1.jpeg",
-            "images/pic_1.2.jpeg"
-        ],
-        "name": "Aria Silk Blouse",
-        "price": 120,
-        "category": "Women's Collection"
-    },
-    "p2": {
-        "discription": "Minimalist Cotton T-Shirt. Price: $85. Material: Organic Cotton. Policy: 30-day return. Hashtags: #cotton #tshirt #minimalist",
-        "images": [
-            "images/pic_1.3.jpeg",
-            "images/pic_1.4.jpeg"
-        ],
-        "name": "Luna Cotton Tee",
-        "price": 85,
-        "category": "Women's Collection"
-    },
-    "p3": {
-        "discription": "Designer Jeans. Price: $95. Material: Premium Denim. Policy: 30-day return. Hashtags: #denim #jeans #stylish",
-        "images": [
-            "images/pic_1.5.jpeg",
-            "images/pic_1.6.jpeg"
-        ],
-        "name": "Helia Designer Jeans",
-        "price": 95,
-        "category": "Women's Collection"
-    },
-    "p4": {
-        "discription": "Classic Wool Coat. Price: $150. Material: Premium Wool, Silk Lining. Policy: 30-day return. Hashtags: #wool #coat #timeless",
-        "images": [
-            "images/product-item-1.jpg",
-            "images/product-item-2.jpg"
-        ],
-        "name": "Grace Wool Coat",
-        "price": 150,
-        "category": "Women's Collection"
-    },
-    "p5": {
-        "discription": "Bohemian Summer Dress. Price: $65. Material: Rayon, Cotton Blend. Policy: 30-day return. Hashtags: #boho #dress #summer",
-        "images": [
-            "images/product-item-3.jpg",
-            "images/product-item-4.jpg"
-        ],
-        "name": "Terra Summer Dress",
-        "price": 65,
-        "category": "Women's Collection"
-    },
-    "p6": {
-        "discription": "Premium Leather Jacket. Price: $250. Material: Genuine Leather. Policy: 30-day return. Hashtags: #leather #jacket #luxury",
-        "images": [
-            "images/product-item-5.jpg",
-            "images/product-item-6.jpg"
-        ],
-        "name": "Stella Leather Jacket",
-        "price": 250,
-        "category": "Women's Collection"
-    },
-    "p7": {
-        "discription": "Modern Linen Shirt. Price: $110. Material: Premium Linen. Policy: 30-day return. Hashtags: #linen #shirt #modern",
-        "images": [
-            "images/product-item-7.jpg",
-            "images/product-item-8.jpg"
-        ],
-        "name": "Orion Linen Shirt",
-        "price": 110,
-        "category": "Men's Collection"
-    },
-    "p8": {
-        "discription": "Classic Cotton Polo. Price: $90. Material: Pique Cotton. Policy: 30-day return. Hashtags: #polo #cotton #classic",
-        "images": [
-            "images/product-item-9.jpg",
-            "images/product-item-10.jpg"
-        ],
-        "name": "Seraphina Cotton Polo",
-        "price": 90,
-        "category": "Men's Collection"
-    }
+  "p1": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product0_1.jpg",
+      "/images/products/product0_2.jpg",
+      "/images/products/product0_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p2": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product1_1.jpg",
+      "/images/products/product1_2.jpg",
+      "/images/products/product1_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p3": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product2_1.jpg",
+      "/images/products/product2_2.jpg",
+      "/images/products/product2_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p4": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product3_1.jpg",
+      "/images/products/product3_2.jpg",
+      "/images/products/product3_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p5": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product4_1.jpg",
+      "/images/products/product4_2.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p6": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product5_1.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p7": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product6_1.jpg",
+      "/images/products/product6_2.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p8": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product7_1.jpg",
+      "/images/products/product7_2.jpg",
+      "/images/products/product7_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p9": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product8_1.jpg",
+      "/images/products/product8_2.jpg",
+      "/images/products/product8_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p10": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product9_1.jpg",
+      "/images/products/product9_2.jpg",
+      "/images/products/product9_3.jpg",
+      "/images/products/product9_4.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p11": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product10_1.jpg",
+      "/images/products/product10_2.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 279,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p12": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product11_1.jpg",
+      "/images/products/product11_2.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p13": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product12_1.jpg",
+      "/images/products/product12_2.jpg",
+      "/images/products/product12_3.jpg",
+      "/images/products/product12_4.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p14": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product13_1.jpg",
+      "/images/products/product13_2.jpg",
+      "/images/products/product13_3.jpg",
+      "/images/products/product13_4.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p15": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product14_1.jpg",
+      "/images/products/product14_2.jpg",
+      "/images/products/product14_3.jpg",
+      "/images/products/product14_4.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 289,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p16": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product15_1.jpg",
+      "/images/products/product15_2.jpg",
+      "/images/products/product15_3.jpg",
+      "/images/products/product15_4.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p17": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product16_1.jpg",
+      "/images/products/product16_2.jpg",
+      "/images/products/product16_3.jpg",
+      "/images/products/product16_4.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p18": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product17_1.jpg",
+      "/images/products/product17_2.jpg",
+      "/images/products/product17_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt",
+    "price": 249,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p19": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product18_1.jpg",
+      "/images/products/product18_2.jpg",
+      "/images/products/product18_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt",
+    "price": 249,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p20": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product19_1.jpg",
+      "/images/products/product19_2.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 349,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p21": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "images": [
+      "/images/products/product20_1.jpg",
+      "/images/products/product20_2.jpg",
+      "/images/products/product20_3.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 269,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+  },
+  "p22": {
+    "discription": "Irunga Bhai themed printed T-shirt. Launching price: 249 (first orders). Fabric: Cotton. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product21_1.jpg",
+      "/images/products/product21_2.jpg",
+      "/images/products/product21_3.jpg"
+    ],
+    "name": "Irunga Bhai T-Shirt",
+    "price": 249,
+    "category": "Celebrity / Fan T-Shirts",
+    "hashtags": ["#irungabhai ","#gta6 ","#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand"]
+  },
+  "p23": {
+    "discription": "Vidaamuyarchi printed fan T-shirt. Fabric: Cotton. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product22_1.jpg",
+      "/images/products/product22_2.jpg",
+      "/images/products/product22_3.jpg"
+    ],
+    "name": "Vidaamuyarchi Printed T-Shirt",
+    "price": 249,
+    "category": "Celebrity / Fan T-Shirts",
+    "hashtags": ["#vidaamuyarchi ","#thalaajith ","#ak ","#customisedtshirt ","#printedtshirt ","#trendingtshirt"]
+  },
+  "p24": {
+    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product23_1.jpg"
+    ],
+    "name": "Classic Cotton T-Shirt ",
+    "price": 329,
+    "category": "Customised Printed T-Shirts",
+    "hashtags": ["#vidaamuyarchi ","#thalaajith ","#ak ","#customisedtshirt ","#printedtshirt ","#trendingtshirt"]
+  },
+  "p25": {
+    "discription": "Valentine's Day special printed T-shirt. Can be customised. Launching price for first 5 orders: 249. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product25_1.jpg"
+    ],
+    "name": "Valentine's Special T-Shirt",
+    "price": 349,
+    "category": "Valentine's Specials",
+    "hashtags": ["#customisedtshirt ","#coupletshirt ","#valentinesdaygiftidea ","#valentinesdayoffer ","#printedtshirt"]
+  },
+  "p26": {
+    "discription": "Sachein movie themed printed T-shirt. Launching price available. Fabric: Cotton. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product26_1.jpg"
+    ],
+    "name": "Sachein Movie T-Shirt",
+    "price": 269,
+    "category": "Celebrity / Fan T-Shirts",
+    "hashtags": ["#trendingtshirt ","#actorvijay ","#sacheinmovie ","#customisedtshirt ","#printedtshirt"]
+  },
+  "p27": {
+    "discription": "Good Bad Ugly printed T-shirt (Ajith fans). Launching price stated. Fabric: Cotton. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product27_1.jpg"
+    ],
+    "name": "Good Bad Ugly T-Shirt",
+    "price": 349,
+    "category": "Celebrity / Fan T-Shirts",
+    "hashtags": ["#ajithkumar ","#ak ","#goodbadugly ","#customisedtshirt ","#printedtshirt"]
+  },
+  "p28": {
+    "discription": "Dhoni themed printed T-shirt. Available sizes: L, XL and Oversized. Launching price stated. Policy: No returns or exchange.",
+    "images": [
+      "/images/products/product28_1.jpg"
+    ],
+    "name": "One Last Time Dhoni T-Shirt",
+    "price": 289,
+    "category": "Celebrity / Fan T-Shirts",
+    "hashtags": ["#onelasttime ","#msdhoni ","#customisedtshirt ","#printedtshirt ","#trendingtshirt"]
+  },
+  "p29": {
+    "discription": "Banner / campaign: Make your Valentine more Happy. (Use as promotional slide). Contact for details.",
+    "images": [],
+    "name": "Valentine Promotion Banner",
+    "price": 249,
+    "category": "Promotions / Banners",
+    "hashtags": [""]
+  }
 }
