@@ -89,12 +89,12 @@
             <div>
               <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Fabric</label>
               <div class="flex flex-wrap gap-2 mt-2">
-                <button v-for="material in ['cotton', 'silk', 'linen', 'wool']" :key="material"
+                <button v-for="material in fabricOptions" :key="material.value"
                   class="px-3 py-1 text-sm font-medium rounded-md border transition-colors"
-                  :class="selectedMaterials.includes(material)
+                  :class="selectedMaterials.includes(material.value)
                     ? 'bg-blue-600 text-white border-blue-600'
-                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'" @click="toggleMaterial(material)">
-                  {{ material.charAt(0).toUpperCase() + material.slice(1) }}
+                    : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'" @click="toggleMaterial(material.value)">
+                  {{ material.name.charAt(0).toUpperCase() + material.name.slice(1) }}
                 </button>
               </div>
             </div>
@@ -176,7 +176,15 @@ const categories = computed(() => {
   for (const id in products.value) {
     categories.add(products.value[id].category)
   }
-  return [{ name: 'All', value: null }, ...Array.from(categories).map(c => ({ name: c, value: c }))]
+  return [ ...Array.from(categories).map(c => ({ name: c, value: c }))]
+})
+
+const fabricOptions = computed(() => {
+  const fabrics = new Set()
+  for (const id in products.value) {
+    fabrics.add(products.value[id].fabric)
+  }
+  return [ ...Array.from(fabrics).map(f => ({ name: f, value: f }))]
 })
 
 const filteredProducts = computed(() => {
@@ -194,8 +202,10 @@ const filteredProducts = computed(() => {
 
   if (selectedMaterials.value.length > 0) {
     filtered = filtered.filter(p => {
+      console.log(p.fabric, selectedMaterials.value);
       return selectedMaterials.value.some(material =>
-        p.discription && p.discription.toLowerCase().includes(material.toLowerCase())
+        // p.discription && p.discription.toLowerCase().includes(material.toLowerCase()) getting the fabric type with discription
+        material === p.fabric
       )
     })
   }

@@ -1,8 +1,9 @@
 import { ref, computed } from 'vue'
 import productsData from '../../products.json'
 
+const products = ref(productsData)
+
 export const useProductsStore = () => {
-  const products = ref(productsData)
 
   const getProductById = (id) => {
     return computed(() => products.value[id])

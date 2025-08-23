@@ -24,7 +24,7 @@
           <vue-feather v-for="i in 5" :key="i" type="star" class="h-4 w-4 fill-current text-accent"></vue-feather>
         </div>
       </div>
-      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2 h-10 overflow-hidden">{{ shortDescription }}</p>
+      <p class="text-gray-500 dark:text-gray-400 text-sm mt-2 h-10 overflow-hidden">{{ product.short_description }}</p>
     </template>
     <template #footer>
       <div class="flex flex-wrap mt-4 mb-2">
@@ -58,10 +58,7 @@ const imageUrlAlt = (event) => {
   event.target.src = `https://placehold.co/400x400?text=${event.target.alt}`
 }
 
-const shortDescription = computed(() => {
-  if (!props.product.discription) return ''
-  return props.product.discription.split('.')[0]
-})
+
 
 
 

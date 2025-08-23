@@ -1,335 +1,710 @@
 {
   "p1": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 1,
+    "name": "Classic Cotton T-Shirt",
+    "short_description": "Soft cotton tee with a sharp, long-lasting print.",
+    "discription": "Elevate your everyday style with our Classic Cotton T-Shirt. Crafted from 100% premium, breathable cotton, it features a sharp, high-quality print that's built to last. Perfect for casual outings or layering, this tee offers unbeatable comfort and a versatile look. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product0_1.jpg",
       "/images/products/product0_2.jpg",
       "/images/products/product0_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p2": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 2,
+    "name": "Graphic Print Cotton T-Shirt",
+    "short_description": "A versatile wardrobe essential with a standout graphic.",
+    "discription": "Discover your new favorite tee. Made from soft, premium cotton, this t-shirt combines all-day comfort with a standout graphic print. It's a versatile wardrobe essential that's perfect for making a statement. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product1_1.jpg",
       "/images/products/product1_2.jpg",
-      "/images/products/product1_3.jpg"
+      "images/products/product1_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p3": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 3,
+    "name": "Signature Print T-Shirt",
+    "short_description": "Unique signature print on a soft, premium cotton tee.",
+    "discription": "Style meets comfort in our signature printed t-shirt. Featuring a unique design on premium, soft-touch cotton, this tee is perfect for those who want to stand out from the crowd. Ideal for daily wear. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product2_1.jpg",
       "/images/products/product2_2.jpg",
       "/images/products/product2_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p4": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 4,
+    "name": "Modern Art T-Shirt",
+    "short_description": "Eye-catching modern art print on a classic cotton tee.",
+    "discription": "A classic staple with a modern twist. This printed t-shirt is made from high-quality cotton for a soft feel and a comfortable fit. The eye-catching graphic adds a touch of personality to any outfit. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product3_1.jpg",
       "/images/products/product3_2.jpg",
       "/images/products/product3_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p5": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 5,
+    "name": "Essential Printed Tee",
+    "short_description": "The perfect blend of style, comfort, and quality.",
+    "discription": "Refresh your wardrobe with this essential printed tee. Crafted from premium cotton for maximum comfort, its durable print ensures you'll be turning heads for a long time. A perfect blend of style and quality. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product4_1.jpg",
       "/images/products/product4_2.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p6": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 6,
+    "name": "Bold Graphic T-Shirt",
+    "short_description": "Make a bold statement in this vibrant graphic t-shirt.",
+    "discription": "Make a bold statement with our vibrant printed t-shirt. Designed for comfort and style, this premium cotton tee features a unique graphic that captures your individuality. A must-have for any t-shirt lover. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product5_1.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p7": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 7,
+    "name": "Urban Style Printed T-Shirt",
+    "short_description": "A cool, contemporary print for your urban adventures.",
+    "discription": "Upgrade your casual look with this stylish printed t-shirt. The premium cotton fabric guarantees a comfortable fit, while the striking design adds a cool, contemporary edge to your ensemble. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product6_1.jpg",
       "/images/products/product6_2.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p8": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 8,
+    "name": "Minimalist Print T-Shirt",
+    "short_description": "Effortless style with a clean, minimalist graphic.",
+    "discription": "The perfect t-shirt for any occasion. Our premium cotton tee is soft, durable, and features a clean, minimalist print for a touch of modern sophistication. An effortlessly cool addition to your collection. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product7_1.jpg",
       "/images/products/product7_2.jpg",
       "/images/products/product7_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p9": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 9,
+    "name": "Artistic Graphic T-Shirt",
+    "short_description": "Wearable art. A unique, artist-inspired design.",
+    "discription": "Express yourself with our artist-inspired printed t-shirt. Made from 100% premium cotton, this tee offers a comfortable fit and a unique design that stands out. Pair it with jeans or shorts for an easy, stylish look. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product8_1.jpg",
       "/images/products/product8_2.jpg",
       "/images/products/product8_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p10": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 10,
+    "name": "Color Pop T-Shirt",
+    "short_description": "Add a pop of color and personality to your look.",
+    "discription": "Comfort and style, perfectly combined. This premium cotton printed t-shirt is designed for a great fit and feel, with a graphic that adds a pop of color and personality to your look. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product9_1.jpg",
       "/images/products/product9_2.jpg",
       "/images/products/product9_3.jpg",
       "/images/products/product9_4.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p11": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 11,
+    "name": "Timeless Design T-Shirt",
+    "short_description": "A timeless design on an incredibly soft cotton tee.",
+    "discription": "A wardrobe essential you'll reach for again and again. Our premium cotton printed tee is incredibly soft and features a timeless design that never goes out of style. Perfect for everyday wear. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product10_1.jpg",
       "/images/products/product10_2.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 279,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p12": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 12,
+    "name": "Expressive Print T-Shirt",
+    "short_description": "Let your t-shirt do the talking with this bold print.",
+    "discription": "Let your t-shirt do the talking. This premium cotton tee features a bold and expressive print, designed for those who aren't afraid to stand out. Comfortable, stylish, and full of personality. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product11_1.jpg",
       "/images/products/product11_2.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p13": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 13,
+    "name": "Superior Comfort Graphic Tee",
+    "short_description": "Superior comfort meets standout style. Your go-to tee.",
+    "discription": "Experience superior comfort and standout style with our graphic tee. Made from the softest premium cotton and featuring a unique, high-quality print, it's the perfect choice for a relaxed yet fashionable look. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product12_1.jpg",
       "/images/products/product12_2.jpg",
       "/images/products/product12_3.jpg",
       "/images/products/product12_4.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p14": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 14,
+    "name": "Casual Staple Printed T-Shirt",
+    "short_description": "An ultra-comfortable staple for any day of the week.",
+    "discription": "The ultimate casual staple. This printed t-shirt is crafted from breathable premium cotton for an ultra-comfortable fit. Its versatile design makes it an easy choice for any day of the week. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product13_1.jpg",
       "/images/products/product13_2.jpg",
       "/images/products/product13_3.jpg",
       "/images/products/product13_4.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p15": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 15,
+    "name": "Creative Flair T-Shirt",
+    "short_description": "Showcase your creative side with this artistic tee.",
+    "discription": "Add a creative flair to your look with this artistically designed t-shirt. Made with soft, premium cotton, it ensures both comfort and style. A wearable piece of art that's perfect for any casual occasion. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product14_1.jpg",
       "/images/products/product14_2.jpg",
       "/images/products/product14_3.jpg",
       "/images/products/product14_4.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 289,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p16": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 16,
+    "name": "Fresh & Modern Printed Tee",
+    "short_description": "Keep your style fresh with this modern graphic tee.",
+    "discription": "Keep it cool and casual with our latest printed tee. The lightweight premium cotton fabric offers all-day comfort, while the modern graphic print keeps your style fresh and on-trend. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product15_1.jpg",
       "/images/products/product15_2.jpg",
       "/images/products/product15_3.jpg",
       "/images/products/product15_4.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p17": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 17,
+    "name": "Confident Edge T-Shirt",
+    "short_description": "A striking print with a confident, modern edge.",
+    "discription": "A classic tee with a confident edge. Made from premium, soft cotton for a comfortable fit, this t-shirt features a striking print that's sure to get you noticed. A versatile piece for any modern wardrobe. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product16_1.jpg",
       "/images/products/product16_2.jpg",
       "/images/products/product16_3.jpg",
       "/images/products/product16_4.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p18": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 18,
+    "name": "Simple & Stylish T-Shirt",
+    "short_description": "Effortless, everyday style in soft, breathable cotton.",
+    "discription": "Simplicity at its best. This printed t-shirt is crafted from soft, breathable cotton for ultimate comfort. Its clean design and quality print make it a reliable choice for effortless, everyday style. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product17_1.jpg",
       "/images/products/product17_2.jpg",
       "/images/products/product17_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt",
     "price": 249,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "wool"
   },
   "p19": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 19,
+    "name": "Go-To Graphic T-Shirt",
+    "short_description": "Your new go-to tee for ultimate comfort and style.",
+    "discription": "Your go-to tee for comfort and style. Made from premium cotton, this t-shirt feels as good as it looks. The durable print adds a touch of character, making it a standout piece in your collection. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product18_1.jpg",
       "/images/products/product18_2.jpg",
       "/images/products/product18_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt",
     "price": 249,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p20": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 20,
+    "name": "Dynamic Print T-Shirt",
+    "short_description": "Unleash your style with a dynamic, eye-catching print.",
+    "discription": "Unleash your style with this dynamic printed t-shirt. The premium cotton fabric ensures a comfortable, breathable fit, while the eye-catching graphic is perfect for making a statement. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product19_1.jpg",
       "/images/products/product19_2.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 349,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "cotton"
   },
   "p21": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: As per policy, we do not accept RETURNS or EXCHANGE.",
+    "id": 21,
+    "name": "Modern Classic T-Shirt",
+    "short_description": "A modern design meets classic comfort. Perfect for any setting.",
+    "discription": "The perfect blend of modern design and classic comfort. This premium cotton t-shirt features a subtle yet stylish print, making it a versatile addition to any wardrobe. Ideal for any casual setting. Available in sizes L & XL.\n\n*Please Note: As per our policy, all sales are final. We do not accept returns or exchanges.*",
     "images": [
       "/images/products/product20_1.jpg",
       "/images/products/product20_2.jpg",
       "/images/products/product20_3.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 269,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand ","#blacktshirt ","#redtshirt ","#whitetshirt ","#viraltshirt ","#coupletshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand",
+      "#blacktshirt",
+      "#redtshirt",
+      "#whitetshirt",
+      "#viraltshirt",
+      "#coupletshirt"
+    ],
+    "fabric": "wool"
   },
   "p22": {
-    "discription": "Irunga Bhai themed printed T-shirt. Launching price: 249 (first orders). Fabric: Cotton. Policy: No returns or exchange.",
+    "id": 22,
+    "name": "Irunga Bhai T-Shirt",
+    "short_description": "Exclusive fan tee for the one and only Irunga Bhai.",
+    "discription": "Show your support for the one and only Irunga Bhai with this exclusive fan t-shirt! Crafted from comfortable cotton, it's perfect for gaming sessions or everyday wear. Grab it at a special launch price of ₹249 for the first few orders!\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product21_1.jpg",
       "/images/products/product21_2.jpg",
       "/images/products/product21_3.jpg"
     ],
-    "name": "Irunga Bhai T-Shirt",
     "price": 249,
-    "category": "Celebrity / Fan T-Shirts",
-    "hashtags": ["#irungabhai ","#gta6 ","#customisedtshirt ","#printedtshirt ","#trendingtshirt ","#tshirts ","#clothes ","#clothingbrand"]
+    "category": "Celebrity Tshirts",
+    "hashtags": [
+      "#irungabhai",
+      "#gta6",
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt",
+      "#tshirts",
+      "#clothes",
+      "#clothingbrand"
+    ],
+    "fabric": "cotton"
   },
   "p23": {
-    "discription": "Vidaamuyarchi printed fan T-shirt. Fabric: Cotton. Policy: No returns or exchange.",
+    "id": 23,
+    "name": "Vidaamuyarchi Printed T-Shirt",
+    "short_description": "Show your support for Thala Ajith's 'Vidaamuyarchi'!",
+    "discription": "Celebrate Thala Ajith's blockbuster, 'Vidaamuyarchi,' with this must-have fan t-shirt. Made from high-quality, breathable cotton, this tee is the perfect way for any AK fan to show their support in style.\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product22_1.jpg",
       "/images/products/product22_2.jpg",
       "/images/products/product22_3.jpg"
     ],
-    "name": "Vidaamuyarchi Printed T-Shirt",
     "price": 249,
-    "category": "Celebrity / Fan T-Shirts",
-    "hashtags": ["#vidaamuyarchi ","#thalaajith ","#ak ","#customisedtshirt ","#printedtshirt ","#trendingtshirt"]
+    "category": "Movie Tshirts",
+    "hashtags": [
+      "#vidaamuyarchi",
+      "#thalaajith",
+      "#ak",
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt"
+    ],
+    "fabric": "cotton"
   },
   "p24": {
-    "discription": "Premium cotton printed T-shirt. Available sizes: L, XL. Policy: No returns or exchange.",
+    "id": 24,
+    "name": "Fan Favourite Cotton T-Shirt",
+    "short_description": "Show your fandom in style with this premium cotton tee.",
+    "discription": "A must-have for fans! This premium cotton printed t-shirt offers superior comfort and a stylish design perfect for showing your support. Ideal for movie screenings and fan meetups. Available in sizes L & XL.\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product23_1.jpg"
     ],
-    "name": "Classic Cotton T-Shirt ",
     "price": 329,
-    "category": "Customised Printed T-Shirts",
-    "hashtags": ["#vidaamuyarchi ","#thalaajith ","#ak ","#customisedtshirt ","#printedtshirt ","#trendingtshirt"]
+    "category": "Printed Tshirts",
+    "hashtags": [
+      "#vidaamuyarchi",
+      "#thalaajith",
+      "#ak",
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt"
+    ],
+    "fabric": "cotton"
   },
   "p25": {
-    "discription": "Valentine's Day special printed T-shirt. Can be customised. Launching price for first 5 orders: 249. Policy: No returns or exchange.",
+    "id": 25,
+    "name": "Valentine's Special T-Shirt",
+    "short_description": "A unique, customisable gift for your Valentine.",
+    "discription": "Gift the perfect expression of love with our Valentine's Special T-Shirt. This unique design can be customised to add a personal touch for your special someone. Be among the first 5 to order and get it for the special launch price of ₹249!\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product25_1.jpg"
     ],
-    "name": "Valentine's Special T-Shirt",
     "price": 349,
-    "category": "Valentine's Specials",
-    "hashtags": ["#customisedtshirt ","#coupletshirt ","#valentinesdaygiftidea ","#valentinesdayoffer ","#printedtshirt"]
+    "category": "Customised Tshirts",
+    "hashtags": [
+      "#customisedtshirt",
+      "#coupletshirt",
+      "#valentinesdaygiftidea",
+      "#valentinesdayoffer",
+      "#printedtshirt"
+    ],
+    "fabric": "cotton"
   },
   "p26": {
-    "discription": "Sachein movie themed printed T-shirt. Launching price available. Fabric: Cotton. Policy: No returns or exchange.",
+    "id": 26,
+    "name": "Sachein Movie T-Shirt",
+    "short_description": "A nostalgic tribute to Thalapathy Vijay's classic 'Sachein'.",
+    "discription": "Relive the magic of Thalapathy Vijay's classic 'Sachein' with this fan-favourite printed t-shirt. Made from comfortable cotton, it's the perfect nostalgic piece for any Vijay fan's collection. Available now at a special launch price!\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product26_1.jpg"
     ],
-    "name": "Sachein Movie T-Shirt",
     "price": 269,
-    "category": "Celebrity / Fan T-Shirts",
-    "hashtags": ["#trendingtshirt ","#actorvijay ","#sacheinmovie ","#customisedtshirt ","#printedtshirt"]
+    "category": "Movie Tshirts",
+    "hashtags": [
+      "#trendingtshirt",
+      "#actorvijay",
+      "#sacheinmovie",
+      "#customisedtshirt",
+      "#printedtshirt"
+    ],
+    "fabric": "cotton"
   },
   "p27": {
-    "discription": "Good Bad Ugly printed T-shirt (Ajith fans). Launching price stated. Fabric: Cotton. Policy: No returns or exchange.",
+    "id": 27,
+    "name": "Good Bad Ugly T-Shirt",
+    "short_description": "Rep the Ultimate Star Ajith Kumar's next big hit!",
+    "discription": "Get ready for Ajith Kumar's next big hit with the 'Good Bad Ugly' movie t-shirt. This stylish tee, made from pure cotton, is the perfect way to show your support for the Ultimate Star. Don't miss out on the special launch price!\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product27_1.jpg"
     ],
-    "name": "Good Bad Ugly T-Shirt",
     "price": 349,
-    "category": "Celebrity / Fan T-Shirts",
-    "hashtags": ["#ajithkumar ","#ak ","#goodbadugly ","#customisedtshirt ","#printedtshirt"]
+    "category": "Movie Tshirts",
+    "hashtags": [
+      "#ajithkumar",
+      "#ak",
+      "#goodbadugly",
+      "#customisedtshirt",
+      "#printedtshirt"
+    ],
+    "fabric": "cotton"
   },
   "p28": {
-    "discription": "Dhoni themed printed T-shirt. Available sizes: L, XL and Oversized. Launching price stated. Policy: No returns or exchange.",
+    "id": 28,
+    "name": "One Last Time Dhoni T-Shirt",
+    "short_description": "A tribute to the legend, MS Dhoni. For every Thala fan.",
+    "discription": "Celebrate the legacy of a legend with our 'One Last Time' MS Dhoni t-shirt. A perfect tribute for every Thala fan, this tee is crafted for comfort and style. Available in standard (L, XL) and Oversized fits. Grab it now at an exclusive launch price!\n\n*Please Note: All sales are final. No returns or exchanges.*",
     "images": [
       "/images/products/product28_1.jpg"
     ],
-    "name": "One Last Time Dhoni T-Shirt",
     "price": 289,
-    "category": "Celebrity / Fan T-Shirts",
-    "hashtags": ["#onelasttime ","#msdhoni ","#customisedtshirt ","#printedtshirt ","#trendingtshirt"]
-  },
-  "p29": {
-    "discription": "Banner / campaign: Make your Valentine more Happy. (Use as promotional slide). Contact for details.",
-    "images": [],
-    "name": "Valentine Promotion Banner",
-    "price": 249,
-    "category": "Promotions / Banners",
-    "hashtags": [""]
+    "category": "Celebrity Tshirts",
+    "hashtags": [
+      "#onelasttime",
+      "#msdhoni",
+      "#customisedtshirt",
+      "#printedtshirt",
+      "#trendingtshirt"
+    ],
+    "fabric": "cotton"
   }
 }

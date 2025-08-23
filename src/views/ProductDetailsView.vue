@@ -284,7 +284,7 @@ const decreaseQuantity = () => {
 
 const addToCartWithQuantity = () => {
   if (product.value) {
-    const productWithQuantity = { ...product.value, quantity: quantity.value }
+    const productWithQuantity = { ...product.value, quantity: quantity.value, image_ind: activeImageIndex.value }
     addToCart(productWithQuantity)
   }
 }
