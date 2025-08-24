@@ -32,7 +32,7 @@
       </div>
       <div class="flex justify-between items-center mt-4">
         <Button icon="pi pi-heart" class="p-button-rounded p-button-outlined p-button-sm" @click="toggleWishlist" />
-        <Button label="Add to Cart" class="p-button-sm" @click="addToCart" />
+        <Button label="Add to Cart" class="p-button-sm" @click="handleAddToCart" />
       </div>
     </template>
   </Card>
