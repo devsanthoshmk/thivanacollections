@@ -19,13 +19,13 @@
                 <vue-feather type="shopping-cart" class="h-6 w-6 mr-2 text-accent"></vue-feather>
                 Your Items ({{ cart.length }})
               </h2>
-              
+              <!-- <div>{{ cart }}</div> -->
               <div v-for="(item, index) in cart" :key="item.id"
                    class="flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-xl border border-gray-200 dark:border-gray-700 mb-6 card-modern"
                    data-aos="fade-up" :data-aos-delay="100 * index">
                 <div class="flex items-center mb-4 md:mb-0">
                   <div class="img-hover-zoom rounded-lg overflow-hidden mr-6">
-                    <img :src="item.images[item.image_ind]" :alt="item.name" class="w-24 h-24 object-cover">
+                    <img :src="item.images[item.image_ind || 0]" :alt="item.name" class="w-24 h-24 object-cover">
                   </div>
                   <div>
                     <h3 class="font-serif text-xl font-bold">{{ item.name }}</h3>

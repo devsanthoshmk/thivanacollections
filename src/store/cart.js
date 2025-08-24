@@ -37,7 +37,7 @@
 
 import { ref, computed } from 'vue'
 
-const cart = ref([])
+const cart = ref(JSON.parse(localStorage.getItem('cart')) || [])
 
 export const useCartStore = () => {
 
@@ -55,6 +55,7 @@ export const useCartStore = () => {
   }
 
   const addToCart = (product) => {
+    console.log(product);
     const item = cart.value.find(item => item.id === product.id)
     if (item) {
       item.quantity++
@@ -63,6 +64,8 @@ export const useCartStore = () => {
       cart.value.push({ ...product, quantity: 1 })
       logCart(`Added "${product.name}" (ID: ${product.id}) to cart`)
     }
+    console.log(JSON.stringify(cart.value))
+    localStorage.setItem('cart', JSON.stringify(cart.value))
   }
 
   const removeFromCart = (productId) => {
@@ -73,6 +76,7 @@ export const useCartStore = () => {
     } else {
       console.warn(`⚠️ Tried to remove product with ID: ${productId}, but it was not found in the cart.`)
     }
+    localStorage.setItem('cart', JSON.stringify(cart.value))
   }
 
   const updateQuantity = (productId, quantity) => {
@@ -84,6 +88,7 @@ export const useCartStore = () => {
     } else {
       console.warn(`⚠️ Tried to update product with ID: ${productId}, but it was not found in the cart.`)
     }
+    localStorage.setItem('cart', JSON.stringify(cart.value))
   }
 
   const cartCount = computed(() => {
