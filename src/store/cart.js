@@ -1,94 +1,342 @@
-// import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { supabase } from '../supabase'
+import { useAuthStore } from './auth'
 
-// export const useCartStore = () => {
-//   const cart = ref([])
-
-//   const addToCart = (product) => {
-//     const item = cart.value.find(item => item.id === product.id)
-//     if (item) {
-//       item.quantity++
-//     } else {
-//       cart.value.push({ ...product, quantity: 1 })
-//     }
-//   }
-
-//   const removeFromCart = (productId) => {
-//     cart.value = cart.value.filter(item => item.id !== productId)
-//   }
-
-//   const updateQuantity = (productId, quantity) => {
-//     const item = cart.value.find(item => item.id === productId)
-//     if (item) {
-//       item.quantity = quantity
-//     }
-//   }
-
-//   const cartCount = computed(() => {
-//     return cart.value.reduce((total, item) => total + item.quantity, 0)
-//   })
-
-//   const cartTotal = computed(() => {
-//     return cart.value.reduce((total, item) => total + (item.price * item.quantity), 0)
-//   })
-
-//   return { cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal }
-// }
-
-
-import { ref, computed } from 'vue'
-
-const cart = ref(JSON.parse(localStorage.getItem('cart')) || [])
+const authStore = useAuthStore()
+const cart = ref([])
+const loading = ref(false)
+const error = ref(null)
+const isSyncing = ref(false)
 
 export const useCartStore = () => {
 
-  const logCart = (action) => {
-    console.log(`🛒 [Cart Action]: ${action}`)
-    console.table(cart.value.map(item => ({
-      id: item.id,
-      name: item.name,
-      quantity: item.quantity,
-      price: item.price,
-      subtotal: item.price * item.quantity
-    })))
-    console.log(`📦 Total Items: ${cartCount.value}, 💰 Total Price: ₹${cartTotal.value}`)
-    console.log("--------------------------------------------------")
-  }
-
-  const addToCart = (product) => {
-    console.log(product);
-    const item = cart.value.find(item => item.id === product.id)
-    if (item) {
-      item.quantity++
-      logCart(`Increased quantity of "${product.name}" (ID: ${product.id}) to ${item.quantity}`)
-    } else {
-      cart.value.push({ ...product, quantity: 1 })
-      logCart(`Added "${product.name}" (ID: ${product.id}) to cart`)
+  // Load cart from localStorage for unauthenticated users
+  const loadLocalCart = () => {
+    try {
+      const savedCart = localStorage.getItem('cart')
+      if (savedCart) {
+        cart.value = JSON.parse(savedCart)
+      }
+    } catch (err) {
+      console.error('Error loading local cart:', err)
+      cart.value = []
     }
-    console.log(JSON.stringify(cart.value))
-    localStorage.setItem('cart', JSON.stringify(cart.value))
   }
 
-  const removeFromCart = (productId) => {
-    const removedItem = cart.value.find(item => item.id === productId)
-    if (removedItem) {
+  // Save cart to localStorage for unauthenticated users
+  const saveLocalCart = () => {
+    try {
+      localStorage.setItem('cart', JSON.stringify(cart.value))
+    } catch (err) {
+      console.error('Error saving local cart:', err)
+    }
+  }
+
+  // Load cart from Supabase when user logs in
+  const loadCart = async () => {
+    console.log("in load cart", authStore.user.value?.id, authStore.isAuthenticated.value)
+    if (!authStore.isAuthenticated.value || !authStore.user.value?.id) return
+    
+    loading.value = true
+    error.value = null
+    
+    try {
+      const { data, error: fetchError } = await supabase
+        .from('cart')
+        .select('*')
+        .eq('user_id', authStore.user.value.id)
+      
+      if (fetchError) throw fetchError
+      
+      // Transform data to match local cart format
+      cart.value = data.map(item => ({
+        id: item.product_id,
+        name: item.product_name,
+        price: item.product_price,
+        images: [item.product_image],
+        quantity: item.quantity,
+        cartItemId: item.id // Store the cart item ID for updates/deletes
+      }))
+    } catch (err) {
+      error.value = err.message
+      console.error('Error loading cart:', err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  // Sync local cart to Supabase when user logs in
+  const syncLocalCartToDatabase = async () => {
+    if (!authStore.isAuthenticated.value || !authStore.user.value?.id) return
+    
+    const localCart = localStorage.getItem('cart')
+    if (!localCart) return
+    
+    try {
+      const cartItems = JSON.parse(localCart)
+      if (cartItems.length === 0) return
+      
+      isSyncing.value = true
+      loading.value = true
+      error.value = null
+      
+      // Process each item from local cart
+      for (const item of cartItems) {
+        // Check if item already exists in database
+        const { data: existingItems } = await supabase
+          .from('cart')
+          .select('*')
+          .eq('user_id', authStore.user.value.id)
+          .eq('product_id', item.id)
+        
+        if (existingItems && existingItems.length > 0) {
+          // Update quantity if item exists
+          const existingItem = existingItems[0]
+          const newQuantity = existingItem.quantity + item.quantity
+          
+          const { error: updateError } = await supabase
+            .from('cart')
+            .update({ quantity: newQuantity })
+            .eq('id', existingItem.id)
+          
+          if (updateError) throw updateError
+        } else {
+          // Insert new item if it doesn't exist
+          const { error: insertError } = await supabase
+            .from('cart')
+            .insert({
+              user_id: authStore.user.value.id,
+              product_id: item.id,
+              product_name: item.name,
+              product_price: item.price,
+              product_image: item.images[0],
+              quantity: item.quantity
+            })
+          
+          if (insertError) throw insertError
+        }
+      }
+      
+      // Clear local cart after successful sync
+      localStorage.removeItem('cart')
+      
+      // Reload cart from database
+      await loadCart()
+      
+    } catch (err) {
+      error.value = err.message
+      console.error('Error syncing local cart to database:', err)
+    } finally {
+      loading.value = false
+      isSyncing.value = false
+    }
+  }
+
+  // Add item to cart
+  const addToCart = async (product) => {
+    if (!authStore.isAuthenticated.value) {
+      // For non-authenticated users, use local cart
+      const item = cart.value.find(item => item.id === product.id)
+      if (item) {
+        item.quantity++
+      } else {
+        cart.value.push({ ...product, quantity: 1 })
+      }
+      saveLocalCart()
+      return
+    }
+
+    loading.value = true
+    error.value = null
+    
+    try {
+      // Check if item already exists in cart
+      const { data: existingItems } = await supabase
+        .from('cart')
+        .select('*')
+        .eq('user_id', authStore.user.value.id)
+        .eq('product_id', product.id)
+      
+      if (existingItems && existingItems.length > 0) {
+        // Update quantity if item exists
+        const existingItem = existingItems[0]
+        const newQuantity = existingItem.quantity + 1
+        
+        const { error: updateError } = await supabase
+          .from('cart')
+          .update({ quantity: newQuantity })
+          .eq('id', existingItem.id)
+        
+        if (updateError) throw updateError
+        
+        // Update local cart
+        const localItem = cart.value.find(item => item.id === product.id)
+        if (localItem) {
+          localItem.quantity = newQuantity
+        }
+      } else {
+        // Insert new item if it doesn't exist
+        const { data, error: insertError } = await supabase
+          .from('cart')
+          .insert({
+            user_id: authStore.user.value.id,
+            product_id: product.id,
+            product_name: product.name,
+            product_price: product.price,
+            product_image: product.images[0],
+            quantity: 1
+          })
+          .select()
+        
+        if (insertError) throw insertError
+        
+        // Add to local cart
+        cart.value.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          images: [product.images[0]],
+          quantity: 1,
+          cartItemId: data[0].id
+        })
+      }
+    } catch (err) {
+      error.value = err.message
+      console.error('Error adding to cart:', err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  // Remove item from cart
+  const removeFromCart = async (productId) => {
+    if (!authStore.isAuthenticated.value) {
+      // For non-authenticated users, use local cart
       cart.value = cart.value.filter(item => item.id !== productId)
-      logCart(`Removed "${removedItem.name}" (ID: ${productId}) from cart`)
-    } else {
-      console.warn(`⚠️ Tried to remove product with ID: ${productId}, but it was not found in the cart.`)
+      saveLocalCart()
+      return
     }
-    localStorage.setItem('cart', JSON.stringify(cart.value))
+
+    loading.value = true
+    error.value = null
+    
+    try {
+      const cartItem = cart.value.find(item => item.id === productId)
+      if (!cartItem) return
+      
+      const { error: deleteError } = await supabase
+        .from('cart')
+        .delete()
+        .eq('id', cartItem.cartItemId)
+      
+      if (deleteError) throw deleteError
+      
+      // Remove from local cart
+      cart.value = cart.value.filter(item => item.id !== productId)
+    } catch (err) {
+      error.value = err.message
+      console.error('Error removing from cart:', err)
+    } finally {
+      loading.value = false
+    }
   }
 
-  const updateQuantity = (productId, quantity) => {
-    const item = cart.value.find(item => item.id === productId)
-    if (item) {
-      const oldQuantity = item.quantity
-      item.quantity = quantity
-      logCart(`Updated "${item.name}" (ID: ${productId}) quantity from ${oldQuantity} ➝ ${quantity}`)
-    } else {
-      console.warn(`⚠️ Tried to update product with ID: ${productId}, but it was not found in the cart.`)
+  // Update quantity in cart
+  const updateQuantity = async (productId, quantity) => {
+    if (!authStore.isAuthenticated.value) {
+      // For non-authenticated users, use local cart
+      const item = cart.value.find(item => item.id === productId)
+      if (item) {
+        item.quantity = quantity
+      }
+      saveLocalCart()
+      return
     }
-    localStorage.setItem('cart', JSON.stringify(cart.value))
+
+    if (quantity < 1) return
+    
+    loading.value = true
+    error.value = null
+    
+    try {
+      const cartItem = cart.value.find(item => item.id === productId)
+      if (!cartItem) return
+      
+      const { error: updateError } = await supabase
+        .from('cart')
+        .update({ quantity })
+        .eq('id', cartItem.cartItemId)
+      
+      if (updateError) throw updateError
+      
+      // Update local cart
+      const localItem = cart.value.find(item => item.id === productId)
+      if (localItem) {
+        localItem.quantity = quantity
+      }
+    } catch (err) {
+      error.value = err.message
+      console.error('Error updating cart quantity:', err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  // Clear cart
+  const clearCart = () => {
+    cart.value = []
+    if (!authStore.isAuthenticated.value) {
+      localStorage.removeItem('cart')
+    }
+  }
+
+  // Save cart to localStorage when user logs out
+  const saveCartForLogout = async () => {
+    if (!authStore.isAuthenticated.value || !authStore.user.value?.id) return
+    
+    try {
+      // Get current cart from database
+      const { data, error: fetchError } = await supabase
+        .from('cart')
+        .select('*')
+        .eq('user_id', authStore.user.value.id)
+      
+      if (fetchError) throw fetchError
+      
+      // Transform to local cart format and save to localStorage
+      const localCart = data.map(item => ({
+        id: item.product_id,
+        name: item.product_name,
+        price: item.product_price,
+        images: [item.product_image],
+        quantity: item.quantity
+      }))
+      
+      localStorage.setItem('cart', JSON.stringify(localCart))
+    } catch (err) {
+      console.error('Error saving cart for logout:', err)
+    }
+  }
+
+  // Watch for authentication changes
+  watch(() => authStore.isAuthenticated.value, async (isAuthenticated, wasAuthenticated) => {
+    if (isAuthenticated && wasAuthenticated === false) {
+      // User just logged in - sync local cart to database
+      await syncLocalCartToDatabase()
+    } else if (!isAuthenticated && wasAuthenticated === true) {
+      // User just logged out - save cart to localStorage
+      await saveCartForLogout()
+      cart.value = []
+    }
+  }, { immediate: true })
+
+  // Initialize cart based on authentication state
+  const initCart = () => {
+    if (authStore.isAuthenticated.value) {
+      loadCart()
+    } else {
+      loadLocalCart()
+    }
   }
 
   const cartCount = computed(() => {
@@ -99,5 +347,19 @@ export const useCartStore = () => {
     return cart.value.reduce((total, item) => total + (item.price * item.quantity), 0)
   })
 
-  return { cart, addToCart, removeFromCart, updateQuantity, cartCount, cartTotal }
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    cartCount,
+    cartTotal,
+    loading,
+    error,
+    isSyncing,
+    loadCart,
+    loadLocalCart,
+    clearCart,
+    initCart
+  }
 }

@@ -1,0 +1,48 @@
+
+add user login/signup option to my existing webiste and add the cart and orders data to Supabase i atached my annon key
+
+Requirements:
+
+Authentication (Supabase Auth):
+
+Implement login and sign-up functionality using Supabase Auth (email/password).
+
+In the navigation bar, show a round profile photo at the right end.
+
+If the user is not logged in → show “Login” and “Sign up” options.
+
+If the user is logged in → show the user’s profile picture and a logout option.
+
+Frontend Components:
+
+Create reusable Login and Signup components.
+
+Add them to proper routes (e.g., /login, /signup).
+
+Use modern frontend best practices (Vue Tailwind css vue feather and EVERYTHING you used before to create this website).
+
+Cart & Orders with Supabase Database:
+
+Connect the user’s cart and order details to Supabase.
+
+Store cart items under a cart table linked to the authenticated user.
+
+Store orders under an orders table linked to the authenticated user.
+
+Ensure cart persists across sessions (load from Supabase when logged in).
+
+Supabase Credentials:
+
+Use my Supabase anon API key:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndpbHJpeHJwdmtlcmhucXNkeHR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYwMzI1MDQsImV4cCI6MjA3MTYwODUwNH0.pYD9cHKV83Rtc5fC6KRpp56BZjjBJP4vDFRV5dt8XTM
+
+Output Expectations:
+
+Provide complete frontend code (components + routes + Supabase client setup).
+
+Provide Supabase schema for users, cart, and orders tables.
+
+Ensure all code is ready to run with minimal edits.
+
+Follow best practices for auth, state management, and database linking.
