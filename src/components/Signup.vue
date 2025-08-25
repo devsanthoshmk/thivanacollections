@@ -108,7 +108,7 @@ const handleSignup = async () => {
     email.value = ''
     password.value = ''
     confirmPassword.value = ''
-    if (!props.redirect) {
+    if (authStore.isAuthenticated.value && authStore.user.value?.id) {
       emit('signup-success')
     }
   }
