@@ -127,7 +127,7 @@
           </router-link>
           
           <!-- Authentication UI for Mobile -->
-          <div v-if="!authStore.isAuthenticated" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div v-if="!authStore.isAuthenticated.value || !authStore.user.value?.id" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
             <router-link to="/login" @click="isOpen = false" class="block px-4 py-3 text-secondary dark:text-primary hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300 font-medium mb-2">
               <div class="flex items-center">
                 <vue-feather type="log-in" class="h-5 w-5 mr-3"></vue-feather>
