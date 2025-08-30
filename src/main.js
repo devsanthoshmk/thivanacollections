@@ -5,7 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 import PrimeVue from 'primevue/config'
-import Aura from '@primeuix/themes/aura'   // ✅ Aura preset (light/dark built-in)
+import Aura from '@primevue/themes/aura'   // ✅ Aura preset (light/dark built-in)
 
 import AOS from 'aos'
 import 'aos/dist/aos.css'

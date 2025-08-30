@@ -50,7 +50,7 @@
             <!-- Profile Dropdown -->
             <div v-if="showProfileMenu" class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
               <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ authStore.user?.email }}</p>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ email }}</p>
               </div>
               <router-link to="/orders" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                 My Orders
@@ -148,7 +148,7 @@
                 {{ userInitial }}
               </div>
               <div>
-                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ authStore.user?.email }}</p>
+                <p class="text-sm font-medium text-gray-900 dark:text-white">{{ email }}</p>
               </div>
             </div>
             <router-link to="/orders" @click="isOpen = false" class="block px-4 py-3 text-secondary dark:text-primary hover:bg-gray-200 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300 font-medium mb-2">
@@ -184,10 +184,11 @@ const router = useRouter()
 const isOpen = ref(false)
 const isDark = ref(false)
 const showProfileMenu = ref(false)
+const email = ref(authStore.user.value?.email)
 
 const userInitial = computed(() => {
-  if (!authStore.user?.email) return ''
-  return authStore.user.email.charAt(0).toUpperCase()
+  if (!authStore.user.value?.email) return ''
+  return authStore.user.value.email.charAt(0).toUpperCase()
 })
 
 const toggleDarkMode = () => {
@@ -220,7 +221,7 @@ const closeProfileMenu = (event) => {
 
 onMounted(async () => {
   // Initialize auth state
-  await authStore.initAuth()
+  // await authStore.initAuth()
   
   // Set dark mode based on system preference
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -230,6 +231,7 @@ onMounted(async () => {
   
   // Add click event listener to close profile menu
   document.addEventListener('click', closeProfileMenu)
+  console.log(email.value,"from nav")
 })
 
 onUnmounted(() => {
