@@ -231,7 +231,8 @@
           <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Discover more styles from our collection</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <ProductCard v-for="(relatedProduct, id) in relatedProducts" :key="id" :product="{...relatedProduct, id}" data-aos="fade-up" :data-aos-delay="100 * (Object.keys(relatedProducts).indexOf(id) % 4)" />
+          <ProductCard v-for="(product, id) in paginatedProducts" :key="product.id" :product="{ ...product }" data-aos="fade-up"
+          :data-aos-delay="100 * (Object.keys(paginatedProducts).indexOf(id) % 8)" />
         </div>
       </section>
     </div>
@@ -284,8 +285,7 @@ const decreaseQuantity = () => {
 
 const addToCartWithQuantity = () => {
   if (product.value) {
-    const productWithQuantity = { ...product.value, quantity: quantity.value, image_ind: activeImageIndex.value }
-    addToCart(productWithQuantity)
+    addToCart({ product_id: product.value.id, quantity: quantity.value, product_image_index: activeImageIndex.value })
   }
 }
 
@@ -295,7 +295,7 @@ const buyNowWithQuantity = () => {
 }
 
 const buyNow = (product) => {
-  addToCart(product)
+  addToCartWithQuantity()
   router.push('/checkout')
 }
 </script>

@@ -194,19 +194,35 @@ import { useRouter } from "vue-router";
 import Button from "primevue/button";
 import VueFeather from "vue-feather";
 import { useCartStore } from "../store/cart";
-import { useOrdersStore } from "../store/orders";
+// import { useOrdersStore } from "../store/orders";
 import { useAuthStore } from "../store/auth";
 
 import Signup from "@/components/Signup.vue";
 import Login from "@/components/Login.vue";
 
+const loadRazorpayScript = () => {
+  return new Promise((resolve, reject) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => reject("Failed to load Razorpay SDK");
+    document.body.appendChild(script);
+  });
+};
+
+
+
 const router = useRouter();
 const cartStore = useCartStore();
-const ordersStore = useOrdersStore();
+// const ordersStore = useOrdersStore();
 const authStore = useAuthStore();
 
 const { cart, cartTotal } = cartStore;
-const { createOrder, loading: orderLoading } = ordersStore;
+// const { createOrder, loading: orderLoading } = ordersStore;
 
 const showLogin = ref(false);
 console.log(authStore.isAuthenticated.value,authStore.user.value?.id)
@@ -234,7 +250,6 @@ const shippingInfo = ref({
   postalCode: "",
 });
 
-const paymentMethod = ref("Credit Card");
 const isProcessing = ref(false);
 const error = ref("");
 
@@ -264,23 +279,59 @@ const placeOrder = async () => {
   error.value = "";
 
   try {
-    const shippingAddress = `${shippingInfo.value.fullName}, ${shippingInfo.value.phone}, ${shippingInfo.value.address}, ${shippingInfo.value.city}, ${shippingInfo.value.postalCode}`;
+    const razorpay = new window.Razorpay({
+      key: "YOUR_RAZORPAY_KEY",
+      amount: cartTotal.value * 100,
+      currency: "INR",
+      name: "Your Store Name",
+      description: "Order Payment",
+      image: "https://your-store-logo-url.com/logo.png",
+      order_id: "YOUR_ORDER_ID",
+      handler: async (response) => {
+        console.log("Payment successful:", response);
+        // Handle successful payment here
+      },
+      prefill: {
+        name: shippingInfo.value.fullName,
+        email: authStore.user.value?.email || "",
+        contact: shippingInfo.value.phone,
+      },
+      notes: {
+        address: shippingInfo.value.address,
+      },
+      theme: {
+        color: "#F37254",
+      },
+    });
 
-    const result = await createOrder(shippingAddress, paymentMethod.value);
-
-    if (result.success) {
-      router.push(`/orders/${result.order.id}`);
-    } else {
-      error.value = result.error || "Failed to place order";
-    }
-  } catch (err) {
-    error.value = err.message || "An unexpected error occurred";
-  } finally {
-    isProcessing.value = false;
+    razorpay.open();
+  } catch (error) {
+    console.error("Error initializing Razorpay:", error);
   }
+
+  // try {
+  //   const shippingAddress = `${shippingInfo.value.fullName}, ${shippingInfo.value.phone}, ${shippingInfo.value.address}, ${shippingInfo.value.city}, ${shippingInfo.value.postalCode}`;
+
+  //   const result = await createOrder(shippingAddress, paymentMethod.value);
+
+  //   if (result.success) {
+  //     router.push(`/orders/${result.order.id}`);
+  //   } else {
+  //     error.value = result.error || "Failed to place order";
+  //   }
+  // } catch (err) {
+  //   error.value = err.message || "An unexpected error occurred";
+  // } finally {
+  //   isProcessing.value = false;
+  // }
 };
 
 onMounted(() => {
+  loadRazorpayScript().then(() => {
+    console.log("Razorpay SDK loaded");
+  }).catch((error) => {
+    console.error(error);
+  });
   if (authStore.isAuthenticated && authStore.user) {
     shippingInfo.value.fullName = authStore.user.user_metadata?.full_name || "";
     shippingInfo.value.phone = authStore.user.user_metadata?.phone || "";

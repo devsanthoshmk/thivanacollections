@@ -105,7 +105,7 @@
       <!-- Products Grid -->
       <div v-if="Object.keys(paginatedProducts).length > 0"
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <ProductCard v-for="(product, id) in paginatedProducts" :key="id" :product="{ ...product, id }" data-aos="fade-up"
+        <ProductCard v-for="(product, id) in paginatedProducts" :key="product.id" :product="{ ...product }" data-aos="fade-up"
           :data-aos-delay="100 * (Object.keys(paginatedProducts).indexOf(id) % 8)" />
       </div>
 
@@ -243,6 +243,7 @@ const totalRecords = computed(() => Object.keys(filteredProducts.value).length)
 const paginatedProducts = computed(() => {
   const start = currentPage.value * rows.value
   const end = start + rows.value
+  console.log('Paginated Products:', Object.fromEntries(Object.entries(filteredProducts.value).slice(start, end)) )
   return Object.fromEntries(Object.entries(filteredProducts.value).slice(start, end))
 })
 

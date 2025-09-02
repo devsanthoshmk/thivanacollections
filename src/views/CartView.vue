@@ -20,12 +20,12 @@
                 Your Items ({{ cart.length }})
               </h2>
               <!-- <div>{{ cart }}</div> -->
-              <div v-for="(item, index) in cart" :key="item.id"
+              <div v-for="(item, index) in actualCart" :key="item.id"
                    class="flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-xl border border-gray-200 dark:border-gray-700 mb-6 card-modern"
                    data-aos="fade-up" :data-aos-delay="100 * index">
                 <div class="flex items-center mb-4 md:mb-0">
                   <div class="img-hover-zoom rounded-lg overflow-hidden mr-6">
-                    <img :src="item.images[item.image_ind || 0]" :alt="item.name" class="w-24 h-24 object-cover">
+                    <img :src="item.images[item.product_image_index || 0]" :alt="item.name" class="w-24 h-24 object-cover">
                   </div>
                   <div>
                     <h3 class="font-serif text-xl font-bold">{{ item.name }}</h3>
@@ -39,7 +39,7 @@
                     <span class="mx-4 text-xl font-semibold w-8 text-center">{{ item.quantity }}</span>
                     <Button icon="pi pi-plus" class="p-button-rounded p-button-outlined p-button-sm" @click="increaseQuantity(item)" />
                   </div>
-                  <Button class="p-button-danger p-button-rounded p-button-sm" @click="removeFromCart(item.id)">
+                  <Button class="p-button-danger p-button-rounded p-button-sm" @click="removeFromCart(item.id, item.product_image_index)">
                     <vue-feather type="trash-2" class="h-5 w-5"></vue-feather>
                   </Button>
                 </div>
@@ -95,12 +95,14 @@
                 </div>
               </div>
               
-              <router-link to="/checkout">
-                <Button label="Proceed to Checkout" class="w-full p-button-lg btn-modern bg-accent border-accent flex items-center justify-center">
-                  <vue-feather type="lock" class="h-5 w-5 mr-2"></vue-feather>
-                  <span>Secure Checkout</span>
-                </Button>
-              </router-link>
+              <Button
+                @click="addOrders"
+                :loading="ischeckoutbtnloading"
+                label="Secure Checkout"
+                icon="pi pi-lock"
+                iconPos="left"
+                class="w-full p-button-lg btn-modern bg-accent border-accent flex items-center justify-center"
+              />
               
               <div class="mt-6 flex justify-center space-x-4">
                 <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent">
@@ -136,19 +138,51 @@
 </template>
 
 <script setup>
-import { useCartStore } from '../store/cart'
+import { ref, computed, watch } from 'vue'
+import { useCartStore } from '../store/cart';
+import { useProductsStore } from '../store/products';
 import Button from 'primevue/button';
 import VueFeather from 'vue-feather';
 
+const ischeckoutbtnloading = ref(false)
 const { cart, removeFromCart, cartTotal, updateQuantity } = useCartStore()
+const { products } = useProductsStore()
+
+
+const actualCart = computed(() => {
+  return cart.value.map(item => {
+    const product = products.value[item.product_id] // direct lookup
+    return {
+      ...item,
+      ...product,
+      total: (product?.price ?? 0) * item.quantity
+    }
+  })
+})
+
+watch(actualCart, (newCart) => {
+  console.log('Cart updated:', newCart)
+})
+
+
+const addOrders = async () => {
+  ischeckoutbtnloading.value = true
+  try {
+    // todo
+  } catch (error) {
+    console.error('Error adding orders:', error)
+  } finally {
+    ischeckoutbtnloading.value = false
+  }
+}
 
 const increaseQuantity = (item) => {
-  updateQuantity(item.id, item.quantity + 1)
+  updateQuantity(item.id, item.product_image_index, item.quantity + 1)
 }
 
 const decreaseQuantity = (item) => {
   if (item.quantity > 1) {
-    updateQuantity(item.id, item.quantity - 1)
+    updateQuantity(item.id, item.product_image_index, item.quantity - 1)
   }
 }
 </script>

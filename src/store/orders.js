@@ -69,7 +69,7 @@ export const useOrdersStore = () => {
         .from('orders')
         .insert({
           user_id: authStore.user.value.id,
-          total_amount: cartStore.cartTotal.value,
+          total_amount: cartStore.cartTotal.value, //there no cart total change it
           shipping_address: shippingAddress,
           payment_method: paymentMethod,
           status: 'pending'

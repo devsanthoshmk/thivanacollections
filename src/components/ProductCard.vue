@@ -52,6 +52,8 @@ const props = defineProps({
   }
 })
 
+console.log('ProductCard props:', props.product)
+
 const { addToCart } = useCartStore()
 
 const imageUrlAlt = (event) => {
@@ -68,6 +70,6 @@ const toggleWishlist = () => {
 }
 
 const handleAddToCart = () => {
-  addToCart(props.product)
+  addToCart({ product_id: props.product.id, quantity: 1, product_image_index: 0 })
 }
 </script>

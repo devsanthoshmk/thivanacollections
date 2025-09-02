@@ -1,5 +1,5 @@
 {
-  "p1": {
+  "1": {
     "id": 1,
     "name": "Classic Cotton T-Shirt",
     "short_description": "Soft cotton tee with a sharp, long-lasting print.",
@@ -26,7 +26,7 @@
     ],
     "fabric": "cotton"
   },
-  "p2": {
+  "2": {
     "id": 2,
     "name": "Graphic Print Cotton T-Shirt",
     "short_description": "A versatile wardrobe essential with a standout graphic.",
@@ -53,7 +53,7 @@
     ],
     "fabric": "cotton"
   },
-  "p3": {
+  "3": {
     "id": 3,
     "name": "Signature Print T-Shirt",
     "short_description": "Unique signature print on a soft, premium cotton tee.",
@@ -80,7 +80,7 @@
     ],
     "fabric": "cotton"
   },
-  "p4": {
+  "4": {
     "id": 4,
     "name": "Modern Art T-Shirt",
     "short_description": "Eye-catching modern art print on a classic cotton tee.",
@@ -107,7 +107,7 @@
     ],
     "fabric": "cotton"
   },
-  "p5": {
+  "5": {
     "id": 5,
     "name": "Essential Printed Tee",
     "short_description": "The perfect blend of style, comfort, and quality.",
@@ -133,7 +133,7 @@
     ],
     "fabric": "cotton"
   },
-  "p6": {
+  "6": {
     "id": 6,
     "name": "Bold Graphic T-Shirt",
     "short_description": "Make a bold statement in this vibrant graphic t-shirt.",
@@ -158,7 +158,7 @@
     ],
     "fabric": "cotton"
   },
-  "p7": {
+  "7": {
     "id": 7,
     "name": "Urban Style Printed T-Shirt",
     "short_description": "A cool, contemporary print for your urban adventures.",
@@ -184,7 +184,7 @@
     ],
     "fabric": "cotton"
   },
-  "p8": {
+  "8": {
     "id": 8,
     "name": "Minimalist Print T-Shirt",
     "short_description": "Effortless style with a clean, minimalist graphic.",
@@ -211,7 +211,7 @@
     ],
     "fabric": "cotton"
   },
-  "p9": {
+  "9": {
     "id": 9,
     "name": "Artistic Graphic T-Shirt",
     "short_description": "Wearable art. A unique, artist-inspired design.",
@@ -238,7 +238,7 @@
     ],
     "fabric": "cotton"
   },
-  "p10": {
+  "10": {
     "id": 10,
     "name": "Color Pop T-Shirt",
     "short_description": "Add a pop of color and personality to your look.",
@@ -266,7 +266,7 @@
     ],
     "fabric": "cotton"
   },
-  "p11": {
+  "11": {
     "id": 11,
     "name": "Timeless Design T-Shirt",
     "short_description": "A timeless design on an incredibly soft cotton tee.",
@@ -292,7 +292,7 @@
     ],
     "fabric": "cotton"
   },
-  "p12": {
+  "12": {
     "id": 12,
     "name": "Expressive Print T-Shirt",
     "short_description": "Let your t-shirt do the talking with this bold print.",
@@ -318,7 +318,7 @@
     ],
     "fabric": "cotton"
   },
-  "p13": {
+  "13": {
     "id": 13,
     "name": "Superior Comfort Graphic Tee",
     "short_description": "Superior comfort meets standout style. Your go-to tee.",
@@ -346,7 +346,7 @@
     ],
     "fabric": "cotton"
   },
-  "p14": {
+  "14": {
     "id": 14,
     "name": "Casual Staple Printed T-Shirt",
     "short_description": "An ultra-comfortable staple for any day of the week.",
@@ -374,7 +374,7 @@
     ],
     "fabric": "cotton"
   },
-  "p15": {
+  "15": {
     "id": 15,
     "name": "Creative Flair T-Shirt",
     "short_description": "Showcase your creative side with this artistic tee.",
@@ -402,7 +402,7 @@
     ],
     "fabric": "cotton"
   },
-  "p16": {
+  "16": {
     "id": 16,
     "name": "Fresh & Modern Printed Tee",
     "short_description": "Keep your style fresh with this modern graphic tee.",
@@ -430,7 +430,7 @@
     ],
     "fabric": "cotton"
   },
-  "p17": {
+  "17": {
     "id": 17,
     "name": "Confident Edge T-Shirt",
     "short_description": "A striking print with a confident, modern edge.",
@@ -458,7 +458,7 @@
     ],
     "fabric": "cotton"
   },
-  "p18": {
+  "18": {
     "id": 18,
     "name": "Simple & Stylish T-Shirt",
     "short_description": "Effortless, everyday style in soft, breathable cotton.",
@@ -485,7 +485,7 @@
     ],
     "fabric": "wool"
   },
-  "p19": {
+  "19": {
     "id": 19,
     "name": "Go-To Graphic T-Shirt",
     "short_description": "Your new go-to tee for ultimate comfort and style.",
@@ -512,7 +512,7 @@
     ],
     "fabric": "cotton"
   },
-  "p20": {
+  "20": {
     "id": 20,
     "name": "Dynamic Print T-Shirt",
     "short_description": "Unleash your style with a dynamic, eye-catching print.",
@@ -538,7 +538,7 @@
     ],
     "fabric": "cotton"
   },
-  "p21": {
+  "21": {
     "id": 21,
     "name": "Modern Classic T-Shirt",
     "short_description": "A modern design meets classic comfort. Perfect for any setting.",
@@ -565,7 +565,7 @@
     ],
     "fabric": "wool"
   },
-  "p22": {
+  "22": {
     "id": 22,
     "name": "Irunga Bhai T-Shirt",
     "short_description": "Exclusive fan tee for the one and only Irunga Bhai.",
@@ -589,7 +589,7 @@
     ],
     "fabric": "cotton"
   },
-  "p23": {
+  "23": {
     "id": 23,
     "name": "Vidaamuyarchi Printed T-Shirt",
     "short_description": "Show your support for Thala Ajith's 'Vidaamuyarchi'!",
@@ -611,7 +611,7 @@
     ],
     "fabric": "cotton"
   },
-  "p24": {
+  "24": {
     "id": 24,
     "name": "Fan Favourite Cotton T-Shirt",
     "short_description": "Show your fandom in style with this premium cotton tee.",
@@ -631,7 +631,7 @@
     ],
     "fabric": "cotton"
   },
-  "p25": {
+  "25": {
     "id": 25,
     "name": "Valentine's Special T-Shirt",
     "short_description": "A unique, customisable gift for your Valentine.",
@@ -650,7 +650,7 @@
     ],
     "fabric": "cotton"
   },
-  "p26": {
+  "26": {
     "id": 26,
     "name": "Sachein Movie T-Shirt",
     "short_description": "A nostalgic tribute to Thalapathy Vijay's classic 'Sachein'.",
@@ -669,7 +669,7 @@
     ],
     "fabric": "cotton"
   },
-  "p27": {
+  "27": {
     "id": 27,
     "name": "Good Bad Ugly T-Shirt",
     "short_description": "Rep the Ultimate Star Ajith Kumar's next big hit!",
@@ -688,7 +688,7 @@
     ],
     "fabric": "cotton"
   },
-  "p28": {
+  "28": {
     "id": 28,
     "name": "One Last Time Dhoni T-Shirt",
     "short_description": "A tribute to the legend, MS Dhoni. For every Thala fan.",
