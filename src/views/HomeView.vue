@@ -67,8 +67,8 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <ProductCard v-for="(product, id) in paginatedProducts" :key="product.id" :product="{ ...product }" data-aos="fade-up"
-          :data-aos-delay="100 * (Object.keys(paginatedProducts).indexOf(id) % 8)" />
+          <ProductCard v-for="(product, id) in featuredProducts" :key="product.id" :product="{ ...product }" data-aos="fade-up"
+          :data-aos-delay="100 * (Object.keys(featuredProducts).indexOf(id) % 8)" />
         </div>
         
         <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
