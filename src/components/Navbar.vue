@@ -177,6 +177,7 @@ import { useCartStore } from '../store/cart'
 import { useAuthStore } from '../store/auth'
 import { useRouter } from 'vue-router'
 
+
 const { cartCount } = useCartStore()
 const authStore = useAuthStore()
 const router = useRouter()
@@ -205,12 +206,7 @@ const toggleProfileMenu = () => {
 }
 
 const handleLogout = async () => {
-  const result = await authStore.signOut()
-  if (result.success) {
-    showProfileMenu.value = false
-    isOpen.value = false
-    router.push('/')
-  }
+  authStore.signOut()
 }
 
 const closeProfileMenu = (event) => {
