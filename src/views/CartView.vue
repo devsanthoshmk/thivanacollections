@@ -19,7 +19,7 @@
                 <vue-feather type="shopping-cart" class="h-6 w-6 mr-2 text-accent"></vue-feather>
                 Your Items ({{ cart.length }})
               </h2>
-              <!-- <div>{{ cart }}</div> -->
+              <!-- <div>{{ actualCart  }}</div> -->
               <div v-for="(item, index) in actualCart" :key="item.id"
                    class="flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-xl border border-gray-200 dark:border-gray-700 mb-6 card-modern"
                    data-aos="fade-up" :data-aos-delay="100 * index">
@@ -150,8 +150,10 @@ const { products } = useProductsStore()
 
 
 const actualCart = computed(() => {
+  console.log("cart:", cart.value)
   return cart.value.map(item => {
     const product = products.value[item.product_id] // direct lookup
+    console.log("quantity:",item.quantity)
     return {
       ...item,
       ...product,
@@ -167,13 +169,60 @@ watch(actualCart, (newCart) => {
 
 const addOrders = async () => {
   ischeckoutbtnloading.value = true
-  try {
-    // todo
-  } catch (error) {
-    console.error('Error adding orders:', error)
-  } finally {
-    ischeckoutbtnloading.value = false
-  }
+  console.log("curl body:",JSON.stringify(
+        {
+          body: {
+            items: actualCart.value,
+            total: cartTotal.value
+          },
+          order: {
+            total_amount: cartTotal.value
+          },
+          order_items: actualCart.value.map(item => ({
+            product_id: item.id,
+            product_name: item.name,
+            product_price: item.price,
+            quantity: item.quantity,
+            product_image_index: item.product_image_index,
+          }))
+        }
+      ))
+  // try {
+  //   // calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
+  //   const response = await fetch('/api/create-order', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(
+  //       {
+  //         body: {
+  //           items: actualCart.value,
+  //           total: cartTotal.value
+  //         },
+  //         order: {
+  //           total_amount: cartTotal.value
+  //         },
+  //         order_items: actualCart.value.map(item => ({
+  //           product_id: item.id,
+  //           product_name: item.name,
+  //           product_price: item.price,
+  //           quantity: item.quantity,
+  //           product_image_index: item.product_image_index,
+  //         }))
+  //       }
+  //     )
+  //   })
+
+  //   if (!response.ok) throw new Error('Failed to create order')
+
+  //   const { orderId } = await response.json()
+
+  // } catch (error) {
+  //   console.error('Error adding orders:', error)
+  // } finally {
+  //   ischeckoutbtnloading.value = false
+  // }
 }
 
 const increaseQuantity = (item) => {

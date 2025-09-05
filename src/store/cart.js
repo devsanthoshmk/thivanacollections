@@ -42,20 +42,22 @@ export const useCartStore = () => {
     error.value = null
     
     try {
+      syncLocalCartToDatabase()
       const { data, error: fetchError } = await supabase
         .from('cart')
         .select('*')
         .eq('user_id', authStore.user.value.id)
       
       if (fetchError) throw fetchError
-      syncLocalCartToDatabase()
       if (error.value) throw new Error(error.value)
       // Transform data to match local cart format
-      cart.value.push(data.map(item => ({
+      cart.value = data.map(item => ({
         product_id: item.product_id,
         quantity: item.quantity,
-        product_image_index: item.product_image_index
-      })))
+        product_image_index: item.product_image_index,
+        cartItemId: item.id
+      }))
+      console.log("cart.value", cart.value)
     } catch (err) {
       error.value = err.message
       console.error('Error loading cart:', err)
@@ -67,38 +69,50 @@ export const useCartStore = () => {
   // Sync local cart to Supabase when user logs in
   const syncLocalCartToDatabase = async () => {
     if (!authStore.isAuthenticated.value || !authStore.user.value?.id) return
-    
+
     const localCart = localStorage.getItem('cart')
     if (!localCart) return
-    
+
     try {
       const cartItems = JSON.parse(localCart)
-      if (cartItems.length === 0) return
-      
+      if (cartItems.length === 0) {
+        
+      }
+
       isSyncing.value = true
       loading.value = true
       error.value = null
-      
-      // Process each item from local cart
+
+      const { data: existingItems, error: fetchError } = await supabase
+        .from('cart')
+        .select('*')
+        .eq('user_id', authStore.user.value.id)
+      if (fetchError) throw fetchError
+
+      // Key by product_id and product_image_index for uniqueness
+      const cartMap = existingItems.reduce((acc, item) => {
+        acc[`${item.product_id}_${item.product_image_index}`] = item
+        return acc
+      }, {})
+
       for (const item of cartItems) {
-        // Check if item already exists in database
-        const { data: existingItems } = await supabase
-          .from('cart')
-          .select('*')
-          .eq('user_id', authStore.user.value.id)
-          .eq('product_id', item.product_id)
+        const key = `${item.product_id}_${item.product_image_index}`
+        if (cartMap[key]) {
+          console.log("condition",cartMap[key].id === item.cartItemId, cartMap[key].id, item.cartItemId)
+          if (cartMap[key].id === item.cartItemId) {
+              
 
-        if (existingItems && existingItems.length > 0) {
-          // Update quantity if item exists
-          const existingItem = existingItems[0]
-          const newQuantity = existingItem.quantity + item.quantity
-          
-          const { error: updateError } = await supabase
-            .from('cart')
-            .update({ quantity: newQuantity })
-            .eq('id', existingItem.product_id)
+            // Update quantity if item exists
+            const existingItem = cartMap[key]
+            const newQuantity = existingItem.quantity + item.quantity
 
-          if (updateError) throw updateError
+            const { error: updateError } = await supabase
+              .from('cart')
+              .update({ quantity: newQuantity })
+              .eq('id', existingItem.id)
+
+            if (updateError) throw updateError
+          }
         } else {
           // Insert new item if it doesn't exist
           const { error: insertError } = await supabase
@@ -109,17 +123,17 @@ export const useCartStore = () => {
               product_image_index: item.product_image_index,
               quantity: item.quantity
             })
-          
+
           if (insertError) throw insertError
         }
       }
-      
+
       // Clear local cart after successful sync
       localStorage.removeItem('cart')
-      
+
       // Reload cart from database
       await loadCart()
-      
+
     } catch (err) {
       error.value = err.message
       console.error('Error syncing local cart to database:', err)
@@ -136,7 +150,7 @@ export const useCartStore = () => {
       // For non-authenticated users, use local cart
       const item = cart.value.find(item => item.product_id === product.product_id && item.product_image_index === product.product_image_index)
       if (item) {
-        item.quantity++
+        item.quantity += product.quantity
       } else {
         cart.value.push({ ...product, quantity: 1 })
       }
@@ -286,9 +300,9 @@ export const useCartStore = () => {
 
   // Save cart to localStorage when user logs out
   const saveCartForLogout = async () => {
-    if (!authStore.isAuthenticated.value || !authStore.user.value?.id) return
     
     try {
+      console.log('Saving cart for logout:', cart.value)
       localStorage.setItem('cart', JSON.stringify(cart.value))
     } catch (err) {
       console.error('Error saving cart for logout:', err)
@@ -297,10 +311,7 @@ export const useCartStore = () => {
 
   // Watch for authentication changes
   watch(() => authStore.isAuthenticated.value, async (isAuthenticated, wasAuthenticated) => {
-    if (isAuthenticated && wasAuthenticated === false) {
-      // User just logged in - sync local cart to database
-      await syncLocalCartToDatabase()
-    } else if (!isAuthenticated && wasAuthenticated === true) {
+    if (!isAuthenticated && wasAuthenticated === true) {
       // User just logged out - save cart to localStorage
       await saveCartForLogout()
       // cart.value = []
@@ -338,6 +349,7 @@ export const useCartStore = () => {
     loadCart,
     loadLocalCart,
     clearCart,
-    initCart
+    initCart,
+    saveCartForLogout  // impl later: save cart to localStorage on logout in auth store
   }
 }

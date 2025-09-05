@@ -52,7 +52,7 @@ const props = defineProps({
   }
 })
 
-console.log('ProductCard props:', props.product)
+// console.log('ProductCard props:', props.product)
 
 const { addToCart } = useCartStore()
 

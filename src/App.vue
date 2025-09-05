@@ -9,15 +9,15 @@
 </template>
 
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import { useAuthStore } from './store/auth'
-import { useOrdersStore } from './store/orders'
+// import { useOrdersStore } from './store/orders'
 import { useCartStore } from './store/cart'
 
 const authStore = useAuthStore()
-const ordersStore = useOrdersStore()
+// const ordersStore = useOrdersStore()
 const cartStore = useCartStore()
 
 onMounted(async () => {
@@ -29,17 +29,10 @@ onMounted(async () => {
   
   // Initialize orders if user is authenticated
   if (authStore.isAuthenticated.value) {
-    ordersStore.initOrders()
+    // ordersStore.initOrders()
   }
 })
 
-// Watch for authentication changes to initialize cart and orders
-watch(() => authStore.isAuthenticated.value, (isAuthenticated) => {
-  if (isAuthenticated) {
-    cartStore.initCart()
-    ordersStore.initOrders()
-  }
-})
 </script>
 
 <style scoped>
