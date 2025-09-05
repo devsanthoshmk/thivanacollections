@@ -14,7 +14,11 @@ export const useOrdersStore = () => {
 
   // Clear cart after successful order
   const clearCartAfterOrder = async () => {
-    if (!authStore.isAuthenticated.value) return
+    if (!authStore.isAuthenticated.value) {
+      localStorage.removeItem('cart')
+      cartStore.clearCart()
+      return
+    }
     
     try {
       // Delete all cart items for the user
@@ -37,52 +41,38 @@ export const useOrdersStore = () => {
     return computed(() => orders.value.find(order => order.id === orderId))
   }
 
-  // Update order status
-  const updateOrderStatus = async (orderId, status) => {
+
+  const loadOrders = async () => {
     loading.value = true
-    error.value = null
-    
+    error.value = null  
     try {
-      const { error: updateError } = await supabase
+      const { data, error: fetchError } = await supabase
         .from('orders')
-        .update({ status })
-        .eq('id', orderId)
-      
-      if (updateError) throw updateError
-      
-      // Update local orders
-      const order = orders.value.find(order => order.id === orderId)
-      if (order) {
-        order.status = status
-      }
-      
-      return { success: true }
+        .select('*, order_items(*)')
+        .eq('user_id', authStore.user.value.id)   // optional extra safeguard
+        .order('created_at', { ascending: false });
+
+        if (fetchError) throw fetchError
+        
+        orders.value = data
+        console.log("Fetched orders:", data)
     } catch (err) {
       error.value = err.message
-      console.error('Error updating order status:', err)
-      return { success: false, error: error.value }
+      console.error('Error loading orders:', err)
     } finally {
       loading.value = false
     }
+
   }
-
-  // we dont need to load orders on authentication now(dev in progress:going to make checkout)
-
-  // Load orders when user logs in
-  // const initOrders = () => {
-  //   if (authStore.isAuthenticated.value) {
-  //     loadOrders()
-  //   }
-  // }
 
   return {
     orders,
     loading,
     error,
-    // loadOrders,
+    loadOrders,
     // createOrder,
     getOrderById,
-    updateOrderStatus,
+    // updateOrderStatus,
     // initOrders
   }
 }

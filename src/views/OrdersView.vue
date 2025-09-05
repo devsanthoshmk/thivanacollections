@@ -55,7 +55,7 @@
               <div class="space-y-4">
                 <div v-for="item in order.items" :key="item.id" class="flex items-center">
                   <div class="img-hover-zoom rounded-lg overflow-hidden mr-4">
-                    <img :src="'/' + item.product_image" :alt="item.product_name" class="w-16 h-16 object-cover">
+                    <img :src="'/' + products[item.product_id].image[item.product_image_index]" :alt="item.product_name" class="w-16 h-16 object-cover">
                   </div>
                   <div class="flex-grow">
                     <h5 class="font-bold">{{ item.product_name }}</h5>
@@ -92,6 +92,10 @@ import { ref, onMounted } from 'vue'
 import Button from 'primevue/button'
 import VueFeather from 'vue-feather'
 import { useOrdersStore } from '../store/orders'
+import { useProductsStore } from '@/store/products'
+
+const productsStore = useProductsStore()
+const { products } = productsStore
 
 const ordersStore = useOrdersStore()
 const { orders, loading, error, loadOrders } = ordersStore
@@ -109,6 +113,8 @@ const getStatusClass = (status) => {
   switch (status) {
     case 'pending':
       return 'bg-yellow-100 text-yellow-800'
+    case 'paid':
+      return 'bg-green-100 text-slate-800'
     case 'processing':
       return 'bg-blue-100 text-blue-800'
     case 'shipped':

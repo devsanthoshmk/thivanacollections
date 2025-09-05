@@ -141,9 +141,11 @@
 import { ref, computed, watch } from 'vue'
 import { useCartStore } from '../store/cart';
 import { useProductsStore } from '../store/products';
+import { useAuthStore } from "/src/store/auth.js";
 import Button from 'primevue/button';
 import VueFeather from 'vue-feather';
 
+const authStore = useAuthStore()
 const ischeckoutbtnloading = ref(false)
 const { cart, removeFromCart, cartTotal, updateQuantity } = useCartStore()
 const { products } = useProductsStore()
@@ -169,24 +171,26 @@ watch(actualCart, (newCart) => {
 
 const addOrders = async () => {
   ischeckoutbtnloading.value = true
-  console.log("curl body:",JSON.stringify(
-        {
-          body: {
-            items: actualCart.value,
-            total: cartTotal.value
-          },
-          order: {
-            total_amount: cartTotal.value
-          },
-          order_items: actualCart.value.map(item => ({
-            product_id: item.id,
-            product_name: item.name,
-            product_price: item.price,
-            quantity: item.quantity,
-            product_image_index: item.product_image_index,
-          }))
-        }
-      ))
+  const data = {
+    body: {
+      amount: cartTotal.value,
+      currency: "INR",
+    },
+    order: {
+      user_id: authStore.user.value?.id,
+      total_amount: cartTotal.value
+    },
+    order_items: actualCart.value.map(item => ({
+      product_id: item.id,
+      product_name: item.name,
+      product_price: item.price,
+      quantity: item.quantity,
+      product_image_index: item.product_image_index,
+    }))
+  };
+  console.log("curl body:", JSON.stringify(data))
+      console.log("orders and order_items:", data)
+  ischeckoutbtnloading.value = false
   // try {
   //   // calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
   //   const response = await fetch('/api/create-order', {
