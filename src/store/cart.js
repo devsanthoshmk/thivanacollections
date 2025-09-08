@@ -2,15 +2,18 @@ import { ref, computed, watch } from 'vue'
 import { supabase } from '../supabase'
 import { useAuthStore } from './auth'
 import { useProductsStore } from './products'
+import { useToast } from 'primevue/usetoast';
 
 const authStore = useAuthStore()
 const cart = ref([])
 const loading = ref(false)
 const error = ref(null)
+
 const isSyncing = ref(false)
+let toast;
 
 export const useCartStore = () => {
-
+  
   // Load cart from localStorage for unauthenticated users
   const loadLocalCart = () => {
     try {
@@ -26,10 +29,20 @@ export const useCartStore = () => {
 
   // Save cart to localStorage for unauthenticated users
   const saveLocalCart = () => {
+
     try {
       localStorage.setItem('cart', JSON.stringify(cart.value))
+      toast.add({severity:'success', summary: 'Cart Updated', detail: 'Your cart has been updated successfully. Please login to sync your cart across devices.', life: 3000});
     } catch (err) {
       console.error('Error saving local cart:', err)
+      toast.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: `Failed to update cart. Please <a href="/signup" class="text-blue-500 underline">login/signup</a> and try again.`,
+        life: 10000,
+        escape: false   // 👈 allows HTML rendering
+      })
+
     }
   }
 
@@ -55,7 +68,7 @@ export const useCartStore = () => {
         product_id: item.product_id,
         quantity: item.quantity,
         product_image_index: item.product_image_index,
-        cartItemId: item.id
+        id: item.id
       }))
       console.log("cart.value", cart.value)
     } catch (err) {
@@ -98,8 +111,8 @@ export const useCartStore = () => {
       for (const item of cartItems) {
         const key = `${item.product_id}_${item.product_image_index}`
         if (cartMap[key]) {
-          console.log("condition",cartMap[key].id === item.cartItemId, cartMap[key].id, item.cartItemId)
-          if (cartMap[key].id === item.cartItemId) {
+          console.log("condition",cartMap[key].id === item.id, cartMap[key].id, item.id)
+          if (cartMap[key].id === item.id) {
               
 
             // Update quantity if item exists
@@ -163,12 +176,16 @@ export const useCartStore = () => {
     
     try {
       // Check if item already exists in cart
-      const { data: existingItems } = await supabase
+      const { data: existingItems, error: fetchError } = await supabase
         .from('cart')
         .select('*')
         .eq('user_id', authStore.user.value.id)
         .eq('product_id', product.product_id)
 
+      if (fetchError) {
+        console.log('fetchError', fetchError,"at 179 text: // Check if item already exists in cart")
+        throw fetchError
+      }
       if (existingItems && existingItems.length > 0) {
         // Update quantity if item exists
         const existingItem = existingItems[0]
@@ -177,10 +194,14 @@ export const useCartStore = () => {
         const { error: updateError } = await supabase
           .from('cart')
           .update({ quantity: newQuantity })
-          .eq('id', existingItem.product_id)
+          .eq('id', existingItem.id)
 
-        if (updateError) throw updateError
-        
+        if (updateError) {
+          console.log('updateError', updateError, "at 194 text: // Update quantity if item exists")
+          console.log('existingItem', existingItem,"cart", cart.value)
+          throw updateError
+        }
+
         // Update local cart
         const localItem = cart.value.find(item => item.product_id === product.product_id && item.product_image_index === product.product_image_index)
         if (localItem) {
@@ -205,9 +226,10 @@ export const useCartStore = () => {
           product_id: product.product_id,
           product_image_index: product.product_image_index,
           quantity: 1,
-          cartItemId: data[0].id
+          id: data[0].id
         })
       }
+      toast.add({severity:'success', summary: 'Added to Cart', detail: 'Product added to cart successfully.', life: 3000});
     } catch (err) {
       error.value = err.message
       console.error('Error adding to cart:', err)
@@ -235,7 +257,7 @@ export const useCartStore = () => {
       const { error: deleteError } = await supabase
         .from('cart')
         .delete()
-        .eq('id', cartItem.cartItemId)
+        .eq('id', cartItem.id)
       
       if (deleteError) throw deleteError
       
@@ -273,7 +295,7 @@ export const useCartStore = () => {
       const { error: updateError } = await supabase
         .from('cart')
         .update({ quantity })
-        .eq('id', cartItem.cartItemId)
+        .eq('id', cartItem.id)
       
       if (updateError) throw updateError
       
@@ -319,7 +341,8 @@ export const useCartStore = () => {
   }, { immediate: true })
 
   // Initialize cart based on authentication state
-  const initCart = () => {
+  const initCart = (tost) => {
+    toast = tost;
     if (authStore.isAuthenticated.value) {
       loadCart()
     } else {

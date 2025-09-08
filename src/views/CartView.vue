@@ -104,7 +104,7 @@
                 class="w-full p-button-lg btn-modern bg-accent border-accent flex items-center justify-center"
               />
               
-              <div class="mt-6 flex justify-center space-x-4">
+              <!-- <div class="mt-6 flex justify-center space-x-4">
                 <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent">
                   <vue-feather type="credit-card" class="h-6 w-6"></vue-feather>
                 </a>
@@ -114,7 +114,7 @@
                 <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent">
                   <vue-feather type="globe" class="h-6 w-6"></vue-feather>
                 </a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -142,6 +142,7 @@ import { ref, computed, watch } from 'vue'
 import { useCartStore } from '../store/cart';
 import { useProductsStore } from '../store/products';
 import { useAuthStore } from "/src/store/auth.js";
+import { useOrdersStore } from '@/store/orders';
 import Button from 'primevue/button';
 import VueFeather from 'vue-feather';
 import { useRouter } from 'vue-router';
@@ -151,6 +152,7 @@ const authStore = useAuthStore()
 const ischeckoutbtnloading = ref(false)
 const { cart, removeFromCart, cartTotal, updateQuantity } = useCartStore()
 const { products } = useProductsStore()
+const { addOrder,order_id } = useOrdersStore()
 
 
 const actualCart = computed(() => {
@@ -204,7 +206,10 @@ const addOrders = async () => {
 
     if (!response.ok) throw new Error('Failed to create order')
 
-    const { orderId } = await response.json()
+    const { data,error } = await response.json()
+    // if(error) throw new Error(error.message)
+    if (error) console.log(error);
+    order_id = data.id
 
   } catch (error) {
     console.error('Error adding orders:', error)

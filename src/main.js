@@ -6,6 +6,8 @@ import router from './router'
 
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'   // ✅ Aura preset (light/dark built-in)
+import Toast from 'primevue/toast';
+import ToastService from 'primevue/toastservice';
 
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -32,6 +34,8 @@ app.use(PrimeVue, {
     tooltip: 1100
   }
 })
+
+app.use(ToastService);
 
 app.mount('#app')
 

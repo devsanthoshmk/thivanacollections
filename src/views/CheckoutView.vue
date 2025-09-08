@@ -194,11 +194,17 @@ import { useRouter } from "vue-router";
 import Button from "primevue/button";
 import VueFeather from "vue-feather";
 import { useCartStore } from "../store/cart";
-// import { useOrdersStore } from "../store/orders";
+import { useOrdersStore } from "../store/orders";
 import { useAuthStore } from "../store/auth";
 
 import Signup from "@/components/Signup.vue";
 import Login from "@/components/Login.vue";
+
+
+
+const router = useRouter()
+
+const { order_id, } = useOrdersStore();
 
 const loadRazorpayScript = () => {
   return new Promise((resolve, reject) => {
@@ -216,7 +222,6 @@ const loadRazorpayScript = () => {
 
 
 
-const router = useRouter();
 const cartStore = useCartStore();
 // const ordersStore = useOrdersStore();
 const authStore = useAuthStore();
@@ -283,13 +288,14 @@ const placeOrder = async () => {
       key: "rzp_test_RBdgGRUdVaj4hY",
       amount: cartTotal.value * 100,
       currency: "INR",
-      name: "Your Store Name",
+      name: "Thivana Collections",
       description: "Order Payment",
-      image: "https://your-store-logo-url.com/logo.png",
-      order_id: "YOUR_ORDER_ID",
+      image: "https://thivana.pages.dev/assets/logo.jpg",
+      order_id: order_id,
       handler: async (response) => {
         console.log("Payment successful:", response);
         // Handle successful payment here
+        //handle cloudflare payment verification and order status and detals updation
       },
       prefill: {
         name: shippingInfo.value.fullName,
@@ -327,6 +333,9 @@ const placeOrder = async () => {
 };
 
 onMounted(() => {
+  if (!order_id) {
+    router.push("/cart")
+  }
   loadRazorpayScript().then(() => {
     console.log("Razorpay SDK loaded");
   }).catch((error) => {

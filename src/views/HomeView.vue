@@ -156,10 +156,13 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed,onMounted } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
 import VueFeather from 'vue-feather'
 import { useProductsStore } from '../store/products'
+import { useToast } from 'primevue/usetoast';
+
+const toast = useToast()
 
 const { products } = useProductsStore()
 
@@ -168,4 +171,8 @@ const featuredProducts = computed(() => {
   return Object.fromEntries(Object.entries(products.value).slice(0, 4))
 })
 console.log(featuredProducts)
+onMounted(() => {
+  toast.add({severity:'info', summary: 'Welcome to Thivana Collections!', detail: 'Explore our exclusive collection of premium clothing.', life: 5000});
+})
+
 </script>

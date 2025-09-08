@@ -9,6 +9,7 @@ const cartStore = useCartStore()
 const orders = ref([])
 const loading = ref(false)
 const error = ref(null)
+const order_id=ref('')
 
 export const useOrdersStore = () => {
 
@@ -36,11 +37,7 @@ export const useOrdersStore = () => {
     }
   }
 
-  // Get order by ID
-  const getOrderById = (orderId) => {
-    return computed(() => orders.value.find(order => order.id === orderId))
-  }
-
+  // order_id updated from backed
 
   const loadOrders = async () => {
     loading.value = true
@@ -66,12 +63,13 @@ export const useOrdersStore = () => {
   }
 
   return {
+    order_id,
     orders,
     loading,
     error,
     loadOrders,
     // createOrder,
-    getOrderById,
+    // getOrderById,
     // updateOrderStatus,
     // initOrders
   }
