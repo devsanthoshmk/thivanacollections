@@ -144,7 +144,9 @@ import { useProductsStore } from '../store/products';
 import { useAuthStore } from "/src/store/auth.js";
 import Button from 'primevue/button';
 import VueFeather from 'vue-feather';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const authStore = useAuthStore()
 const ischeckoutbtnloading = ref(false)
 const { cart, removeFromCart, cartTotal, updateQuantity } = useCartStore()
@@ -190,43 +192,27 @@ const addOrders = async () => {
   };
   console.log("curl body:", JSON.stringify(data))
       console.log("orders and order_items:", data)
-  ischeckoutbtnloading.value = false
-  // try {
-  //   // calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
-  //   const response = await fetch('/api/create-order', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(
-  //       {
-  //         body: {
-  //           items: actualCart.value,
-  //           total: cartTotal.value
-  //         },
-  //         order: {
-  //           total_amount: cartTotal.value
-  //         },
-  //         order_items: actualCart.value.map(item => ({
-  //           product_id: item.id,
-  //           product_name: item.name,
-  //           product_price: item.price,
-  //           quantity: item.quantity,
-  //           product_image_index: item.product_image_index,
-  //         }))
-  //       }
-  //     )
-  //   })
+  try {
+    // calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
+    const response = await fetch('http://localhost:8787/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
 
-  //   if (!response.ok) throw new Error('Failed to create order')
+    if (!response.ok) throw new Error('Failed to create order')
 
-  //   const { orderId } = await response.json()
+    const { orderId } = await response.json()
 
-  // } catch (error) {
-  //   console.error('Error adding orders:', error)
-  // } finally {
-  //   ischeckoutbtnloading.value = false
-  // }
+  } catch (error) {
+    console.error('Error adding orders:', error)
+  } finally {
+    ischeckoutbtnloading.value = false
+    router.push('/checkout')
+
+  }
 }
 
 const increaseQuantity = (item) => {
