@@ -280,7 +280,7 @@ const placeOrder = async () => {
 
   try {
     const razorpay = new window.Razorpay({
-      key: "YOUR_RAZORPAY_KEY",
+      key: "rzp_test_RBdgGRUdVaj4hY",
       amount: cartTotal.value * 100,
       currency: "INR",
       name: "Your Store Name",
