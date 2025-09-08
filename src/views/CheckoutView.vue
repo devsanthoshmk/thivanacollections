@@ -60,36 +60,46 @@
               </h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Full Name -->
                 <div>
                   <label class="block text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
                   <input v-model="shippingInfo.fullName" type="text"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent bg-white dark:bg-gray-700" />
+                  <p v-if="shippingErrors.fullName" class="text-red-500 text-sm mt-1">{{ shippingErrors.fullName }}</p>
                 </div>
+                <!-- Phone Number -->
                 <div>
                   <label class="block text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
                   <input v-model="shippingInfo.phone" type="tel"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent bg-white dark:bg-gray-700" />
+                  <p v-if="shippingErrors.phone" class="text-red-500 text-sm mt-1">{{ shippingErrors.phone }}</p>
                 </div>
+                <!-- Address -->
                 <div class="md:col-span-2">
                   <label class="block text-gray-700 dark:text-gray-300 mb-2">Address</label>
                   <input v-model="shippingInfo.address" type="text"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent bg-white dark:bg-gray-700" />
+                  <p v-if="shippingErrors.address" class="text-red-500 text-sm mt-1">{{ shippingErrors.address }}</p>
                 </div>
+                <!-- City -->
                 <div>
                   <label class="block text-gray-700 dark:text-gray-300 mb-2">City</label>
                   <input v-model="shippingInfo.city" type="text"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent bg-white dark:bg-gray-700" />
+                  <p v-if="shippingErrors.city" class="text-red-500 text-sm mt-1">{{ shippingErrors.city }}</p>
                 </div>
+                <!-- Postal Code -->
                 <div>
                   <label class="block text-gray-700 dark:text-gray-300 mb-2">Postal Code</label>
                   <input v-model="shippingInfo.postalCode" type="text"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent bg-white dark:bg-gray-700" />
+                  <p v-if="shippingErrors.postalCode" class="text-red-500 text-sm mt-1">{{ shippingErrors.postalCode }}</p>
                 </div>
               </div>
             </div>
 
             <!-- Payment Method -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 card-modern" data-aos="fade-up"
+            <!-- <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 card-modern" data-aos="fade-up"
               data-aos-delay="100">
               <h2 class="font-serif text-2xl font-bold mb-6 flex items-center">
                 <vue-feather type="credit-card" class="h-6 w-6 mr-2 text-accent"></vue-feather>
@@ -120,7 +130,7 @@
                   </label>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <div>
@@ -189,19 +199,21 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import Button from "primevue/button";
 import VueFeather from "vue-feather";
 import { useCartStore } from "../store/cart";
 import { useOrdersStore } from "../store/orders";
 import { useAuthStore } from "../store/auth";
+import { useToast } from "primevue/usetoast";
 
 import Signup from "@/components/Signup.vue";
 import Login from "@/components/Login.vue";
 
 
 
+const toast = useToast();
 const router = useRouter()
 
 const { order_id, } = useOrdersStore();
@@ -255,25 +267,92 @@ const shippingInfo = ref({
   postalCode: "",
 });
 
+const shippingErrors = ref({
+  fullName: "",
+  phone: "",
+  address: "",
+  city: "",
+  postalCode: "",
+});
+
 const isProcessing = ref(false);
 const error = ref("");
 
 const isFormValid = computed(() => {
+  const name = shippingInfo.value.fullName?.trim();
+  const phone = shippingInfo.value.phone?.trim();
+  const address = shippingInfo.value.address?.trim();
+  const city = shippingInfo.value.city?.trim();
+  const postal = shippingInfo.value.postalCode?.trim();
+
+  const phoneValid = /^\d{10,}$/.test(phone);
+  const postalValid = /^[A-Za-z0-9]{4,10}$/.test(postal);
+
   return (
-    shippingInfo.value.fullName &&
-    shippingInfo.value.phone &&
-    shippingInfo.value.address &&
-    shippingInfo.value.city &&
-    shippingInfo.value.postalCode &&
-    paymentMethod.value
+    name && name.length >= 2 &&
+    phone && phoneValid &&
+    address && address.length >= 5 &&
+    city && city.length >= 2 &&
+    postal && postalValid
   );
 });
+
+function validateShipping() {
+  // Full Name
+  if (!shippingInfo.value.fullName.trim()) {
+    shippingErrors.value.fullName = "Full name is required.";
+  } else if (shippingInfo.value.fullName.trim().length < 2) {
+    shippingErrors.value.fullName = "Full name must be at least 2 characters.";
+  } else {
+    shippingErrors.value.fullName = "";
+  }
+
+  // Phone
+  const phone = shippingInfo.value.phone.trim();
+  if (!phone) {
+    shippingErrors.value.phone = "Phone number is required.";
+  } else if (!/^\d{10,}$/.test(phone)) {
+    shippingErrors.value.phone = "Enter a valid 10-digit phone number.";
+  } else {
+    shippingErrors.value.phone = "";
+  }
+
+  // Address
+  if (!shippingInfo.value.address.trim()) {
+    shippingErrors.value.address = "Address is required.";
+  } else if (shippingInfo.value.address.trim().length < 5) {
+    shippingErrors.value.address = "Address must be at least 5 characters.";
+  } else {
+    shippingErrors.value.address = "";
+  }
+
+  // City
+  if (!shippingInfo.value.city.trim()) {
+    shippingErrors.value.city = "City is required.";
+  } else if (shippingInfo.value.city.trim().length < 2) {
+    shippingErrors.value.city = "City must be at least 2 characters.";
+  } else {
+    shippingErrors.value.city = "";
+  }
+
+  // Postal Code
+  const postal = shippingInfo.value.postalCode.trim();
+  if (!postal) {
+    shippingErrors.value.postalCode = "Postal code is required.";
+  } else if (!/^[A-Za-z0-9]{4,10}$/.test(postal)) {
+    shippingErrors.value.postalCode = "Enter a valid postal code (4-10 characters).";
+  } else {
+    shippingErrors.value.postalCode = "";
+  }
+}
 
 const placeOrder = async () => {
   if (!authStore.isAuthenticated) {
     error.value = "Please log in to place an order";
     return;
   }
+
+  validateShipping();
 
   if (!isFormValid.value) {
     error.value = "Please fill in all required fields";
@@ -294,12 +373,22 @@ const placeOrder = async () => {
       order_id: order_id,
       handler: async (response) => {
         console.log("Payment successful:", response);
+        updateOrderStatus(
+          response,
+          {
+            name: shippingInfo.value.fullName,
+            phone: shippingInfo.value.phone,
+            email: authStore.user.value?.email,
+            address: shippingInfo.value.address + "$$" + shippingInfo.value.city,
+            postalCode: shippingInfo.value.postalCode,
+          }
+        );
         // Handle successful payment here
         //handle cloudflare payment verification and order status and detals updation
       },
       prefill: {
         name: shippingInfo.value.fullName,
-        email: authStore.user.value?.email || "",
+        email: authStore.user.value?.email,
         contact: shippingInfo.value.phone,
       },
       notes: {
@@ -315,21 +404,27 @@ const placeOrder = async () => {
     console.error("Error initializing Razorpay:", error);
   }
 
-  // try {
-  //   const shippingAddress = `${shippingInfo.value.fullName}, ${shippingInfo.value.phone}, ${shippingInfo.value.address}, ${shippingInfo.value.city}, ${shippingInfo.value.postalCode}`;
 
-  //   const result = await createOrder(shippingAddress, paymentMethod.value);
+};
 
-  //   if (result.success) {
-  //     router.push(`/orders/${result.order.id}`);
-  //   } else {
-  //     error.value = result.error || "Failed to place order";
-  //   }
-  // } catch (err) {
-  //   error.value = err.message || "An unexpected error occurred";
-  // } finally {
-  //   isProcessing.value = false;
-  // }
+const updateOrderStatus = async (payment,user_data) => {
+  try {
+    await fetch(`https://api.media-thivana.workers.dev/placeOrder`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        payment: payment,
+        user_data: user_data,
+       }),
+    });
+    console.log("Order status updated to:", data);
+    toast.add({severity:'success', summary: 'Order Placed', detail:'Your order has been placed successfully!', life: 6000});
+    router.push("/orders");
+  } catch (err) {
+    console.error("Failed to update order status:", err);
+  }
 };
 
 onMounted(() => {
@@ -346,4 +441,6 @@ onMounted(() => {
     shippingInfo.value.phone = authStore.user.user_metadata?.phone || "";
   }
 });
+
+watch(shippingInfo, validateShipping, { deep: true, immediate: true });
 </script>

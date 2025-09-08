@@ -171,7 +171,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted,watch } from 'vue'
 import VueFeather from 'vue-feather';
 import { useCartStore } from '../store/cart'
 import { useAuthStore } from '../store/auth'
@@ -185,7 +185,12 @@ const router = useRouter()
 const isOpen = ref(false)
 const isDark = ref(false)
 const showProfileMenu = ref(false)
-const email = ref(authStore.user.value?.email)
+const email = computed(() => authStore.user.value?.email)
+
+
+watch(() => authStore.user.value, (newUser) => {
+  console.log("Auth user changed:", authStore.user.value.email);
+})
 
 const userInitial = computed(() => {
   if (!authStore.user.value?.email) return ''

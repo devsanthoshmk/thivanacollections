@@ -196,7 +196,7 @@ const addOrders = async () => {
       console.log("orders and order_items:", data)
   try {
     // calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
-    const response = await fetch('http://localhost:8787/orders', {
+    const response = await fetch('https://api.media-thivana.workers.dev/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -206,10 +206,11 @@ const addOrders = async () => {
 
     if (!response.ok) throw new Error('Failed to create order')
 
-    const { data,error } = await response.json()
+    const { payment_data, error } = await response.json()
+    console.log("payment_data:", payment_data)
     // if(error) throw new Error(error.message)
     if (error) console.log(error);
-    order_id = data.id
+    order_id.value = payment_data.id
 
   } catch (error) {
     console.error('Error adding orders:', error)
