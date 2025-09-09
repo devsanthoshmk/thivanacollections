@@ -3,7 +3,7 @@
       <div class="max-w-md mx-auto">
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8" data-aos="fade-up">
           <div v-if="authStore.error.value" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-            {{ authStore.error }}. Make sure you confirmed you email with the confirmation link sent to your inbox.
+            {{ authStore.error }}.
           </div>
           
           <form @submit.prevent="handleLogin">
