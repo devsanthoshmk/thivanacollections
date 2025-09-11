@@ -26,6 +26,7 @@
             <div class="mb-6">
               <label for="password" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Password</label>
               <Password 
+                @focus="passwordFocus = true"
                 id="password" 
                 v-model="password" 
                 class="w-full"
@@ -34,11 +35,13 @@
                 placeholder="Create a password"
                 required
               />
+              <p v-if="password!==confirmPassword && confirmPasswordFocus && passwordFocus" class="text-red-500 text-sm mt-1">Passwords do not match</p>
             </div>
             
             <div class="mb-6">
               <label for="confirmPassword" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Confirm Password</label>
               <Password 
+                @focus="confirmPasswordFocus = true"
                 id="confirmPassword" 
                 v-model="confirmPassword" 
                 class="w-full"
@@ -47,6 +50,7 @@
                 placeholder="Confirm your password"
                 required
               />
+              <p v-if="password!==confirmPassword && confirmPasswordFocus && passwordFocus" class="text-red-500 text-sm mt-1">Passwords do not match</p>
             </div>
             
             <div class="mb-6">
@@ -80,6 +84,9 @@ import InputText from 'primevue/inputtext'
 import Password from 'primevue/password'
 import Button from 'primevue/button'
 
+const passwordFocus = false;
+const confirmPasswordFocus = false;
+
 const props = defineProps({
     redirect: { type: Boolean, default: true },
 })
@@ -97,7 +104,7 @@ const successMessage = ref('')
 
 const handleSignup = async () => {
   if (password.value !== confirmPassword.value) {
-    authStore.error = 'Passwords do not match'
+    authStore.error.value = 'Passwords do not match'
     return
   }
 

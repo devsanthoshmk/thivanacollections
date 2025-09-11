@@ -185,12 +185,8 @@ const router = useRouter()
 const isOpen = ref(false)
 const isDark = ref(false)
 const showProfileMenu = ref(false)
-const email = computed(() => authStore.user.value?.email)
+const email = computed(() => authStore?.user?.value?.email || '')
 
-
-watch(() => authStore.user.value, (newUser) => {
-  console.log("Auth user changed:", authStore.user.value.email);
-})
 
 const userInitial = computed(() => {
   if (!authStore.user.value?.email) return ''
