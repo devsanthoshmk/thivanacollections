@@ -27,9 +27,9 @@
       <p class="text-gray-500 dark:text-gray-400 text-sm mt-2 h-10 overflow-hidden">{{ product.short_description }}</p>
     </template>
     <template #footer>
-      <div class="flex flex-wrap mt-4 mb-2">
+      <!-- <div class="flex flex-wrap mt-4 mb-2">
         <span v-for="tag in product.hashtags" :key="tag" class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full px-3 py-1 text-xs font-semibold mr-2 mb-2 hover:bg-accent hover:text-white transition-colors duration-300 cursor-pointer">{{ tag }}</span>
-      </div>
+      </div> -->
       <div class="flex justify-between items-center mt-4">
         <Button icon="pi pi-heart" class="p-button-rounded p-button-outlined p-button-sm" @click="toggleWishlist" />
         <Button label="Add to Cart" class="p-button-sm" @click="handleAddToCart" />

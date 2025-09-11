@@ -36,39 +36,43 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="w-full">
-            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Search</label>
-            <div class="relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                </svg>
-              </div>
-              <input type="text" v-model="searchQuery" placeholder="Search for clothing..."
-                class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />
-            </div>
-          </div>
-          <div class="w-full">
-            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Category</label>
-            <select v-model="selectedCategory"
-              class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-              <option value="">All Categories</option>
-              <option v-for="category in categories" :key="category.value" :value="category.value">
-                {{ category.name }}
-              </option>
-            </select>
-          </div>
-          <div class="w-full">
-            <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Sort By</label>
-            <select v-model="sortBy"
-              class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-              <option value="">Sort by</option>
-              <option v-for="option in sortOptions" :key="option.value" :value="option.value">
-                {{ option.name }}
-              </option>
-            </select>
-          </div>
+<div class="w-full">
+  <label class="block mb-2 font-medium text-gray-700 dark:text-gray-300">Search</label>
+  <div class="relative w-full">
+    <!-- Icon -->
+    <i class="pi pi-search !absolute !left-3 !top-1/2 !-translate-y-1/2 !text-gray-400"></i>
+    <!-- Input -->
+    <InputText
+      v-model="searchQuery"
+      placeholder="Search for clothing..."
+      class="!w-full !pl-10 !pr-3 !py-2"
+    />
+  </div>
+</div>
+
+            <div class="w-full">
+    <label class="block mb-2 font-medium text-gray-700 dark:text-gray-300">Category</label>
+    <TreeSelect
+      v-model="selectedCategory"
+      :options="treeNodes"
+      placeholder="All Categories"
+      class="w-full"
+      :filter="true"
+      selectionMode="single"
+      appendTo="body"
+    />
+  </div>
+         <div class="w-full">
+    <label class="block mb-2 font-medium text-gray-700 dark:text-gray-300">Sort By</label>
+    <Dropdown
+      v-model="sortBy"
+      :options="sortOptions"
+      optionLabel="name"
+      optionValue="value"
+      placeholder="Sort by"
+      class="w-full"
+    />
+  </div>
         </div>
 
         <!-- Advanced Filters (Collapsible) -->
@@ -152,6 +156,8 @@ import Dropdown from 'primevue/dropdown';
 import Slider from 'primevue/slider';
 import Paginator from 'primevue/paginator';
 import Button from 'primevue/button';
+import TreeSelect from 'primevue/treeselect';
+
 
 const { products } = useProductsStore()
 const searchQuery = ref('')
@@ -170,6 +176,34 @@ const sortOptions = ref([
   { name: 'Name: A to Z', value: 'nameAsc' },
   { name: 'Name: Z to A', value: 'nameDesc' }
 ])
+
+
+const treeNodes = computed(() => {
+  const map = new Map() // main_category => Set of categories
+
+  for (const id in products.value) {
+    const product = products.value[id]
+    if (!map.has(product.main_category)) {
+      map.set(product.main_category, new Set())
+    }
+    map.get(product.main_category).add(product.category)
+  }
+
+  // Convert to PrimeVue TreeSelect format
+  const nodes = []
+  for (const [mainCat, subCats] of map.entries()) {
+    nodes.push({
+      label: mainCat,
+      key: mainCat.replace(/\s+/g, "-").toLowerCase(),
+      children: Array.from(subCats).map(sub => ({
+        label: sub,
+        key: (mainCat + "-" + sub).replace(/\s+/g, "-").toLowerCase()
+      }))
+    })
+  }
+
+  return nodes
+})
 
 const categories = computed(() => {
   const categories = new Set()
@@ -194,8 +228,19 @@ const filteredProducts = computed(() => {
     filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery.value.toLowerCase()))
   }
 
-  if (selectedCategory.value && selectedCategory.value.value) {
-    filtered = filtered.filter(p => p.category === selectedCategory.value.value)
+  if (selectedCategory.value) {
+    console.log('Filtering by category:',Object.keys(selectedCategory.value)[0]);
+    filtered = filtered.filter(p => {
+    const parentKey = p.main_category.replace(/\s+/g, "-").toLowerCase()
+    const childKey = p.category.replace(/\s+/g, "-").toLowerCase()
+
+    // If user selected parent, include all children
+    if (Object.keys(selectedCategory.value)[0] === parentKey) return true
+
+    // If user selected child, check exact match
+    return Object.keys(selectedCategory.value)[0] === `${parentKey}-${childKey}`
+  })
+    console.log('After category filter:', filtered);
   }
 
   filtered = filtered.filter(p => p.price >= priceRange.value[0] && p.price <= priceRange.value[1])
@@ -212,30 +257,31 @@ const filteredProducts = computed(() => {
 
   // Apply sorting
   if (sortBy.value) {
-    switch (sortBy.value.value) {
+    switch (sortBy.value) {
       case 'priceAsc':
         filtered.sort((a, b) => a.price - b.price)
         break
-      case 'priceDesc':
-        filtered.sort((a, b) => b.price - a.price)
+        case 'priceDesc':
+          filtered.sort((a, b) => b.price - a.price)
         break
       case 'nameAsc':
         filtered.sort((a, b) => a.name.localeCompare(b.name))
         break
-      case 'nameDesc':
-        filtered.sort((a, b) => b.name.localeCompare(a.name))
+        case 'nameDesc':
+          filtered.sort((a, b) => b.name.localeCompare(a.name))
         break
       default:
         // Featured - no specific sorting
         break
-    }
-  }
-
-  return filtered.reduce((acc, p) => {
+      }
+      console.log('Sorting by:', sortBy.value, filtered,filtered.reduce((acc, p) => {
     const id = Object.keys(products.value).find(key => products.value[key] === p)
     acc[id] = p
     return acc
-  }, {})
+  }, {}));
+  }
+
+  return filtered
 })
 
 const totalRecords = computed(() => Object.keys(filteredProducts.value).length)
