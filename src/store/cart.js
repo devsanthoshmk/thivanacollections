@@ -2,9 +2,9 @@ import { ref, computed, watch } from 'vue'
 import { supabase } from '../supabase'
 import { useAuthStore } from './auth'
 import { useProductsStore } from './products'
-import { useToast } from 'primevue/usetoast';
 
 const authStore = useAuthStore()
+const { products } = useProductsStore()
 const cart = ref([])
 const loading = ref(false)
 const error = ref(null)
@@ -13,9 +13,22 @@ const isSyncing = ref(false)
 let toast;
 
 export const useCartStore = () => {
+
+  const actualCart = computed(() => {
+    console.log("cart:", cart.value)
+    return cart.value.map(item => {
+      const product = products.value[item.product_id] // direct lookup
+      console.log("quantity:",item.quantity)
+      return {
+        ...item,
+        ...product,
+        total: (product?.price ?? 0) * item.quantity
+      }
+    })
+  })
   
   // Load cart from localStorage for unauthenticated users
-  const loadLocalCart = () => {
+  const loadLocalCart = async () => {
     try {
       const savedCart = localStorage.getItem('cart')
       if (savedCart) {
@@ -341,12 +354,12 @@ export const useCartStore = () => {
   }, { immediate: true })
 
   // Initialize cart based on authentication state
-  const initCart = (tost) => {
+  const initCart = async (tost) => {
     toast = tost;
     if (authStore.isAuthenticated.value) {
-      loadCart()
+      await loadCart()
     } else {
-      loadLocalCart()
+      await loadLocalCart()
     }
   }
 
@@ -373,6 +386,7 @@ export const useCartStore = () => {
     loadLocalCart,
     clearCart,
     initCart,
-    saveCartForLogout  // impl later: save cart to localStorage on logout in auth store
+    saveCartForLogout,  // impl later: save cart to localStorage on logout in auth store
+    actualCart
   }
 }

@@ -48,7 +48,8 @@ const router = createRouter({
     {
       path: '/checkout',
       name: 'checkout',
-      component: CheckoutView
+      component: CheckoutView,
+      props: true
     },
     {
       path: '/confirmation',

@@ -65,7 +65,7 @@
               <div class="space-y-4 mb-6">
                 <div class="flex justify-between">
                   <p class="text-gray-600 dark:text-gray-400">Subtotal</p>
-                  <p>${{ cartTotal }}</p>
+                  <p>₹{{ cartTotal }}</p>
                 </div>
                 <div class="flex justify-between">
                   <p class="text-gray-600 dark:text-gray-400">Shipping</p>
@@ -73,14 +73,14 @@
                 </div>
                 <div class="flex justify-between">
                   <p class="text-gray-600 dark:text-gray-400">Taxes</p>
-                  <p>$0.00</p>
+                  <p>₹0.00</p>
                 </div>
               </div>
               
               <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mb-6">
                 <div class="flex justify-between font-bold text-xl">
                   <p>Total</p>
-                  <p class="text-accent">${{ cartTotal }}</p>
+                  <p class="text-accent">₹{{ cartTotal }}</p>
                 </div>
               </div>
               
@@ -150,27 +150,16 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 const authStore = useAuthStore()
 const ischeckoutbtnloading = ref(false)
-const { cart, removeFromCart, cartTotal, updateQuantity } = useCartStore()
-const { products } = useProductsStore()
-const { addOrder,order_id } = useOrdersStore()
+const { cart, removeFromCart, cartTotal, updateQuantity, actualCart } = useCartStore()
+// const { products } = useProductsStore()
+const { addOrder, order_id } = useOrdersStore()
 
 
-const actualCart = computed(() => {
-  console.log("cart:", cart.value)
-  return cart.value.map(item => {
-    const product = products.value[item.product_id] // direct lookup
-    console.log("quantity:",item.quantity)
-    return {
-      ...item,
-      ...product,
-      total: (product?.price ?? 0) * item.quantity
-    }
-  })
-})
 
-watch(actualCart, (newCart) => {
-  console.log('Cart updated:', newCart)
-})
+
+// watch(actualCart, (newCart) => {
+//   console.log('Cart updated:', newCart)
+// })
 
 
 const addOrders = async () => {

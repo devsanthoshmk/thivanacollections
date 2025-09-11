@@ -19,7 +19,7 @@
     </template>
     <template #content>
       <div class="flex items-center justify-between mt-2">
-        <p class="text-accent font-bold text-xl">${{ product.price }}</p>
+        <p class="text-accent font-bold text-xl">₹{{ product.price }}</p>
         <div class="flex items-center">
           <vue-feather v-for="i in 5" :key="i" type="star" class="h-4 w-4 fill-current text-accent"></vue-feather>
         </div>

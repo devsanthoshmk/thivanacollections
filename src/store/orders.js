@@ -38,8 +38,10 @@ export const useOrdersStore = () => {
   }
 
   // order_id updated from backed
+let userPrevData={}
 
   const loadOrders = async () => {
+    if (!authStore.isAuthenticated.value) return
     loading.value = true
     error.value = null  
     try {
@@ -52,7 +54,9 @@ export const useOrdersStore = () => {
         if (fetchError) throw fetchError
         
         orders.value = data
-        console.log("Fetched orders:", data)
+      console.log("Fetched orders:", data)
+      userPrevData = getUserPrevData()
+      console.log("userprevdata",userPrevData)
     } catch (err) {
       error.value = err.message
       console.error('Error loading orders:', err)
@@ -60,6 +64,34 @@ export const useOrdersStore = () => {
       loading.value = false
     }
 
+  }
+
+  const getUserPrevData = () => {
+    const data = {}
+    for (const item of orders.value) {
+      if (item.name!==null && item.name!==undefined) {
+        if (data.name !== undefined) {
+          data.name = [item.name]
+        } else  data.name.push(item.name)
+      } else if (item.phone!==null && item.phone!==undefined) {
+        if (data.phone !== undefined) {
+          data.phone = [item.phone]
+        } else  data.phone.push(item.phone)
+      } else if (item.address !== null && item.address !== undefined) {
+        if (data.address !== undefined) {
+          data.address = [item.address.match(/(.*?)\$\$/)]
+          data.city = [item.address.match(/\$\$(.*)/)]
+        } else {
+          data.address.push(item.address.match(/(.*?)\$\$/))
+          data.city.push(item.address.match(/\$\$(.*)/))
+        }
+      } else if (item.postal_code !== null && item.postal_code !== undefined) {
+        if (data.postal_code !== undefined) {
+          data.postal_code = [item.postal_code]
+        } else  data.postal_code.push(item.postal_code)
+      }
+    }
+    return data
   }
 
   return {
@@ -71,6 +103,7 @@ export const useOrdersStore = () => {
     // createOrder,
     // getOrderById,
     // updateOrderStatus,
-    // initOrders
+    // initOrders,
+    userPrevData
   }
 }

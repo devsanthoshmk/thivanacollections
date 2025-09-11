@@ -142,7 +142,7 @@
               </h2>
 
               <div class="space-y-4 mb-6">
-                <div v-for="item in cart" :key="item.id" class="flex justify-between">
+                <div v-for="item in actualCart" :key="item.id" class="flex justify-between">
                   <div>
                     <p class="font-medium">{{ item.name }}</p>
                     <p class="text-gray-600 dark:text-gray-400 text-sm">
@@ -150,7 +150,7 @@
                     </p>
                   </div>
                   <p class="font-bold">
-                    ${{ (item.price * item.quantity).toFixed(2) }}
+                    ₹{{ (item.price * item.quantity).toFixed(2) }}
                   </p>
                 </div>
               </div>
@@ -158,7 +158,7 @@
               <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mb-6">
                 <div class="flex justify-between mb-2">
                   <p class="text-gray-600 dark:text-gray-400">Subtotal</p>
-                  <p>${{ cartTotal }}</p>
+                  <p>₹{{ cartTotal }}</p>
                 </div>
                 <div class="flex justify-between mb-2">
                   <p class="text-gray-600 dark:text-gray-400">Shipping</p>
@@ -166,11 +166,11 @@
                 </div>
                 <div class="flex justify-between mb-2">
                   <p class="text-gray-600 dark:text-gray-400">Taxes</p>
-                  <p>$0.00</p>
+                  <p>₹0.00</p>
                 </div>
                 <div class="flex justify-between font-bold text-xl mt-4">
                   <p>Total</p>
-                  <p class="text-accent">${{ cartTotal }}</p>
+                  <p class="text-accent">₹{{ cartTotal }}</p>
                 </div>
               </div>
 
@@ -200,13 +200,15 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from 'vue-router'
 import Button from "primevue/button";
 import VueFeather from "vue-feather";
 import { useCartStore } from "../store/cart";
 import { useOrdersStore } from "../store/orders";
 import { useAuthStore } from "../store/auth";
 import { useToast } from "primevue/usetoast";
+import AutoComplete from 'primevue/autocomplete';
+
 
 import Signup from "@/components/Signup.vue";
 import Login from "@/components/Login.vue";
@@ -214,9 +216,10 @@ import Login from "@/components/Login.vue";
 
 
 const toast = useToast();
+const route = useRoute()
 const router = useRouter()
 
-const { order_id, } = useOrdersStore();
+const { order_id, orders, userPrevData } = useOrdersStore();
 
 const loadRazorpayScript = () => {
   return new Promise((resolve, reject) => {
@@ -238,12 +241,12 @@ const cartStore = useCartStore();
 // const ordersStore = useOrdersStore();
 const authStore = useAuthStore();
 
-const { cart, cartTotal } = cartStore;
+const { cart, cartTotal, actualCart } = cartStore;
 // const { createOrder, loading: orderLoading } = ordersStore;
 
 const showLogin = ref(false);
-console.log(authStore.isAuthenticated.value,authStore.user.value?.id)
-const firstTimeUser = ref(!authStore.isAuthenticated.value || !authStore.user.value?.id);
+console.log(authStore.isAuthenticated.value, authStore.user.value?.id)
+const firstTimeUser = computed(() => !authStore.isAuthenticated.value || !authStore.user.value?.id);
 
 const handleLoginClick = () => {
   showLogin.value = true;
@@ -255,7 +258,6 @@ const handleSignupClick = () => {
 
 const handleSuccess = () => {
   console.log("Authentication successful");
-  firstTimeUser.value = false;
 };
 
 
@@ -440,7 +442,17 @@ onMounted(() => {
     shippingInfo.value.fullName = authStore.user.user_metadata?.full_name || "";
     shippingInfo.value.phone = authStore.user.user_metadata?.phone || "";
   }
+
+  console.log("orders from checkout.vue: ", orders.value, route.params.order_number)
+  console.error("from checkout onmount",!authStore.isAuthenticated.value || !authStore.user.value?.id,authStore,authStore.isAuthenticated.value)
+  console.log(authStore.isAuthenticated.value)
+
+  
 });
 
 watch(shippingInfo, validateShipping, { deep: true, immediate: true });
+
+watch(firstTimeUser, () => {
+  console.error("from watch",!authStore.isAuthenticated.value || !authStore.user.value?.id,authStore,authStore.isAuthenticated.value)
+})
 </script>
