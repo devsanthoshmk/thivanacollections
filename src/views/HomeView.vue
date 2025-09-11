@@ -55,9 +55,9 @@
 
         </div>
         <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
-          <button to="/shop"
+          <router-link to="/shop"
             class="btn-modern inline-block border-2 border-accent text-accent dark:text-accent py-3 px-8 rounded-full font-bold hover:bg-accent hover:!text-white transition-all duration-300">View
-            All Categories</button>
+            All Categories</router-link>
         </div>
       </div>
     </section>
@@ -218,7 +218,7 @@ const Categories = [
     title: "T-Shirts Collection",
     description: "Discover a wide range of plain, printed, oversized, and trendy t-shirts in every style and fit.",
     image: "/images/home/cat-item1.jpg",
-    slug: "tshirts",
+    slug: "t-shirts-collection",
     subcategories: [
       "Plain T-Shirts",
       "Printed T-Shirts",
@@ -241,7 +241,7 @@ const Categories = [
     title: "Merchandise & Themed Wear Collection",
     description: "Exclusive celebrity, movie, and creative themed t-shirts that let you express your personality.",
     image: "/images/products/product22_1.jpg",
-    slug: "merchandise",
+    slug: "merchandise-%26-themed-wear-collection",
     subcategories: [
       "Chocolate Wrapper",
       "Celebrity T-Shirts",

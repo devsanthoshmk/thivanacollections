@@ -46,6 +46,7 @@
       v-model="searchQuery"
       placeholder="Search for clothing..."
       class="!w-full !pl-10 !pr-3 !py-2"
+      showClear
     />
   </div>
 </div>
@@ -60,6 +61,7 @@
       :filter="true"
       selectionMode="single"
       appendTo="body"
+      showClear
     />
   </div>
          <div class="w-full">
@@ -71,6 +73,7 @@
       optionValue="value"
       placeholder="Sort by"
       class="w-full"
+      showClear
     />
   </div>
         </div>
@@ -147,7 +150,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import ProductCard from '../components/ProductCard.vue'
 import VueFeather from 'vue-feather'
 import { useProductsStore } from '../store/products'
@@ -157,6 +160,12 @@ import Slider from 'primevue/slider';
 import Paginator from 'primevue/paginator';
 import Button from 'primevue/button';
 import TreeSelect from 'primevue/treeselect';
+import { useRoute, useRouter } from 'vue-router'
+
+
+const route = useRoute()
+const router = useRouter()
+
 
 
 const { products } = useProductsStore()
@@ -281,6 +290,7 @@ const filteredProducts = computed(() => {
   }, {}));
   }
 
+  updateQueryParams()
   return filtered
 })
 
@@ -313,5 +323,42 @@ const resetFilters = () => {
   selectedMaterials.value = []
   sortBy.value = null
   currentPage.value = 0
+  router.replace({ query: {} })
 }
+
+
+const initFiltersFromQuery = () => {
+  const { search, category, minPrice, maxPrice, materials, sort } = route.query
+
+  if (search) searchQuery.value = search
+  if (category) selectedCategory.value = { [category]: true }
+  if (minPrice && maxPrice) priceRange.value = [Number(minPrice), Number(maxPrice)]
+  if (materials) selectedMaterials.value = materials.split(',')
+  if (sort) sortBy.value = sort
+}
+
+const updateQueryParams = () => {
+  const query = {
+    search: searchQuery.value || undefined,
+    category: selectedCategory.value ? Object.keys(selectedCategory.value)[0] : undefined,
+    minPrice: priceRange.value[0] !== 0 ? priceRange.value[0] : undefined,
+    maxPrice: priceRange.value[1] !== 500 ? priceRange.value[1] : undefined,
+    materials: selectedMaterials.value.length ? selectedMaterials.value.join(',') : undefined,
+    sort: sortBy.value || undefined,
+  }
+    const url = new URL(window.location.href)
+   Object.keys(query).forEach(key => {
+    if (query[key] === null || query[key] === undefined || query[key] === '' || 
+        (Array.isArray(query[key]) && query[key].length === 0)) {
+      url.searchParams.delete(key)
+    } else {
+      url.searchParams.set(key, query[key])
+    }
+  })
+
+  // Replace the current URL without reloading the page
+  history.replaceState(null, '', url.toString())
+}
+
+initFiltersFromQuery()
 </script>
