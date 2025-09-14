@@ -7,11 +7,28 @@ const authStore = useAuthStore()
 const cartStore = useCartStore()
 
 const orders = ref([])
-const loading = ref(false)
+const loading = ref(true)
 const error = ref(null)
 const order_id=ref('')
 
 export const useOrdersStore = () => {
+
+  // getting order by order number
+  const getOrderBynum = (order_number) => {
+    if (!order_number && !authStore.isAuthenticated.value && orders.value.length === 0) return // through here if no order number, not logged in and no orders loaded
+    // loading.value = true use awaiting here instead of using loading becaue loading is used in loadOrders so it will confuss us then this comment
+    error.value = null
+    // loading.value = true use awaiting here instead of using loading becaue loading is used in loadOrders so it will confuss us then this comment
+    const regOrder = orders.value.find(o => o.order_number === order_number)
+    if (regOrder) {
+      // console.log("Order found in local store:", regOrder)
+      // loading.value = false use awaiting here instead of using loading becaue loading is used in loadOrders so it will confuss us then this comment
+      return regOrder
+    } else {
+      // loading.value = false use awaiting here instead of using loading becaue loading is used in loadOrders so it will confuss us then this comment
+      return null
+    }
+  }
 
   // Clear cart after successful order
   const clearCartAfterOrder = async () => {
@@ -69,16 +86,17 @@ let userPrevData={}
   const getUserPrevData = () => {
     const data = {}
     for (const item of orders.value) {
-      if (item.name!==null && item.name!==undefined) {
-        if (data.name !== undefined) {
+      if (item.name !== null && item.name !== undefined) {
+        console.log("name",item.name,data.name)
+        if (data.name === undefined) {
           data.name = [item.name]
         } else  data.name.push(item.name)
       } else if (item.phone!==null && item.phone!==undefined) {
-        if (data.phone !== undefined) {
+        if (data.phone === undefined) {
           data.phone = [item.phone]
         } else  data.phone.push(item.phone)
       } else if (item.address !== null && item.address !== undefined) {
-        if (data.address !== undefined) {
+        if (data.address === undefined) {
           data.address = [item.address.match(/(.*?)\$\$/)]
           data.city = [item.address.match(/\$\$(.*)/)]
         } else {
@@ -86,7 +104,7 @@ let userPrevData={}
           data.city.push(item.address.match(/\$\$(.*)/))
         }
       } else if (item.postal_code !== null && item.postal_code !== undefined) {
-        if (data.postal_code !== undefined) {
+        if (data.postal_code === undefined) {
           data.postal_code = [item.postal_code]
         } else  data.postal_code.push(item.postal_code)
       }
@@ -104,6 +122,7 @@ let userPrevData={}
     // getOrderById,
     // updateOrderStatus,
     // initOrders,
-    userPrevData
+    userPrevData,
+    getOrderBynum
   }
 }
