@@ -47,6 +47,11 @@ const router = createRouter({
     },
     {
       path: '/checkout',
+      name: 'checkout-base',
+      component: CheckoutView,
+    },
+    {
+      path: '/checkout/:order_number',
       name: 'checkout',
       component: CheckoutView,
       props: true
@@ -73,7 +78,7 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/orders/:id',
+      path: '/orders/:order_number',
       name: 'order-details',
       component: OrderDetailsView,
       meta: { requiresAuth: true }
