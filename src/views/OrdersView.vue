@@ -40,29 +40,42 @@
                data-aos="fade-up">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
               <div>
-                <h3 class="font-serif text-2xl font-bold mb-2">Order #{{ order.order_number }}</h3>
+                <router-link :to="`/orders/${order.order_number}`">
+                  <h3 class="font-serif text-3xl font-bold mb-2">
+                    Order #{{ order.order_number }}
+                    <router-link v-if=" formatStatus(order.status) === 'Not Paid'" :to="`/checkout/${order.order_number}`">
+                      <span class=" font-[300] text-lg text-accent hover:underline">(Click to Pay)</span>
+                    </router-link>
+                  </h3>
+                </router-link>
                 <p class="text-gray-600 dark:text-gray-400">Placed on {{ formatDate(order.created_at) }}</p>
               </div>
               <div class="mt-4 md:mt-0">
-                <span :class="getStatusClass(order.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
-                  {{ formatStatus(order.status) }}
-                </span>
+                <router-link :to="formatStatus(order.status) === 'Not Paid' ? `/checkout/${order.order_number}` : `/orders/${order.order_number}`" class="">
+                  <span :class="getStatusClass(order.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
+                    {{ formatStatus(order.status) }}
+                  </span>
+                </router-link>
               </div>
             </div>
             
             <div class="border-t border-gray-200 dark:border-gray-700 pt-6 mb-6">
               <h4 class="font-serif text-xl font-bold mb-4">Order Items</h4>
               <div class="space-y-4">
-                <div v-for="item in order.items" :key="item.id" class="flex items-center">
-                  <div class="img-hover-zoom rounded-lg overflow-hidden mr-4">
-                    <img :src="'/' + products[item.product_id].image[item.product_image_index]" :alt="item.product_name" class="w-16 h-16 object-cover">
-                  </div>
+                <div v-for="item in order.order_items" :key="item.id" class="flex items-center">
+                  <router-link :to="`/products/${item.product_id}`" class="flex-shrink-0">
+                    <div class="img-hover-zoom rounded-lg overflow-hidden mr-4">
+                      <img :src="products[item.product_id].images[item.product_image_index]" :alt="item.product_name" class="w-16 h-16 object-cover">
+                    </div>
+                  </router-link>
                   <div class="flex-grow">
-                    <h5 class="font-bold">{{ item.product_name }}</h5>
+                    <router-link :to="`/products/${item.product_id}`" class="flex-shrink-0">
+                      <h5 class="font-bold">{{ item.product_name }}</h5>
+                    </router-link>
                     <p class="text-gray-600 dark:text-gray-400">Qty: {{ item.quantity }}</p>
                   </div>
                   <div class="text-right">
-                    <p class="font-bold">${{ (item.product_price * item.quantity).toFixed(2) }}</p>
+                    <p class="font-bold">₹{{ (item.product_price * item.quantity).toFixed(2) }}</p>
                   </div>
                 </div>
               </div>
@@ -72,11 +85,11 @@
               <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <div>
                   <h4 class="font-serif text-xl font-bold mb-2">Order Summary</h4>
-                  <p class="text-gray-600 dark:text-gray-400">Shipping: {{ order.shipping_address }}</p>
-                  <p class="text-gray-600 dark:text-gray-400">Payment: {{ order.payment_method }}</p>
+                  <p class="text-gray-600 dark:text-gray-400">Shipping: {{ order.address?.split("$$")[0] }}</p>
+                  <p class="text-gray-600 dark:text-gray-400">Payment: {{ formatStatus(order.status) === "Not Paid" ? "Not Paid" : "Paid" }}</p>
                 </div>
                 <div class="mt-4 md:mt-0 text-right">
-                  <p class="text-2xl font-bold text-accent">Total: ${{ order.total_amount.toFixed(2) }}</p>
+                  <p class="text-2xl font-bold text-accent">Total: ₹{{ order.total_amount.toFixed(2) }}</p>
                 </div>
               </div>
             </div>
@@ -96,7 +109,7 @@ import { useProductsStore } from '@/store/products'
 
 const productsStore = useProductsStore()
 const { products } = productsStore
-
+console.log("products in OrdersView: ", products)
 const ordersStore = useOrdersStore()
 const { orders, loading, error, loadOrders } = ordersStore
 
@@ -106,7 +119,16 @@ const formatDate = (dateString) => {
 }
 
 const formatStatus = (status) => {
-  return status.charAt(0).toUpperCase() + status.slice(1)
+  let before = "";
+  if (status.toLowerCase() === 'pending') {
+    status = 'Not Paid'
+    before = ""
+  } else if (status.toLowerCase() === 'paid' || status.toLowerCase() === 'processing') {
+    before = status + "/"
+    status = 'Processing'
+  }
+
+  return before + status.charAt(0).toUpperCase() + status.slice(1)
 }
 
 const getStatusClass = (status) => {
@@ -128,7 +150,7 @@ const getStatusClass = (status) => {
   }
 }
 
-onMounted(() => {
-  loadOrders()
-})
+// onMounted(() => {
+//   loadOrders()
+// })
 </script>

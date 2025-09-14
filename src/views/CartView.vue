@@ -152,7 +152,7 @@ const authStore = useAuthStore()
 const ischeckoutbtnloading = ref(false)
 const { cart, removeFromCart, cartTotal, updateQuantity, actualCart } = useCartStore()
 // const { products } = useProductsStore()
-const { addOrder, order_id } = useOrdersStore()
+const { loadOrders, orders } = useOrdersStore()
 
 
 
@@ -165,10 +165,10 @@ const { addOrder, order_id } = useOrdersStore()
 const addOrders = async () => {
   ischeckoutbtnloading.value = true
   const data = {
-    body: {
-      amount: cartTotal.value,
-      currency: "INR",
-    },
+    // body: {
+    //   amount: cartTotal.value,
+    //   currency: "INR",
+    // }, giveing order id is deprecated
     order: {
       user_id: authStore.user.value?.id,
       total_amount: cartTotal.value
@@ -185,7 +185,7 @@ const addOrders = async () => {
       console.log("orders and order_items:", data)
   try {
     // calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
-    const response = await fetch('https://api.media-thivana.workers.dev/orders', {
+    const response = await fetch('http://localhost:8787/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -195,17 +195,18 @@ const addOrders = async () => {
 
     if (!response.ok) throw new Error('Failed to create order')
 
-    const { payment_data, error } = await response.json()
+    const { error } = await response.json() // if error error nothing else is deprecated
     console.log("payment_data:", payment_data)
     // if(error) throw new Error(error.message)
     if (error) console.log(error);
-    order_id.value = payment_data.id
 
   } catch (error) {
     console.error('Error adding orders:', error)
   } finally {
     ischeckoutbtnloading.value = false
-    router.push('/checkout')
+    await loadOrders()
+    cart.value = []
+    router.push('/checkout/' + orders.value[0].order_number)
 
   }
 }

@@ -140,9 +140,12 @@
                 <vue-feather type="file-text" class="h-6 w-6 mr-2 text-accent"></vue-feather>
                 Order Summary
               </h2>
+              <div v-if="actualOrdersItm===undefined || actualOrdersItm.length === 0" class="flex justify-center items-center h-64">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-accent"></div>
+              </div>
 
-              <div class="space-y-4 mb-6">
-                <div v-for="item in actualCart" :key="item.id" class="flex justify-between">
+              <div v-else class="space-y-4 mb-6">
+                <div v-for="item in actualOrdersItm" :key="item.id" class="flex justify-between">
                   <div>
                     <p class="font-medium">{{ item.name }}</p>
                     <p class="text-gray-600 dark:text-gray-400 text-sm">
@@ -158,7 +161,7 @@
               <div class="border-t border-gray-200 dark:border-gray-700 pt-4 mb-6">
                 <div class="flex justify-between mb-2">
                   <p class="text-gray-600 dark:text-gray-400">Subtotal</p>
-                  <p>₹{{ cartTotal }}</p>
+                  <p>₹{{ totalAmount }}</p>
                 </div>
                 <div class="flex justify-between mb-2">
                   <p class="text-gray-600 dark:text-gray-400">Shipping</p>
@@ -170,7 +173,7 @@
                 </div>
                 <div class="flex justify-between font-bold text-xl mt-4">
                   <p>Total</p>
-                  <p class="text-accent">₹{{ cartTotal }}</p>
+                  <p class="text-accent">₹{{ totalAmount }}</p>
                 </div>
               </div>
 
@@ -199,7 +202,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch, watchEffect } from "vue";
 import { useRoute, useRouter } from 'vue-router'
 import Button from "primevue/button";
 import VueFeather from "vue-feather";
@@ -216,10 +219,37 @@ import Login from "@/components/Login.vue";
 
 
 const toast = useToast();
-const route = useRoute()
-const router = useRouter()
+const route = useRoute();
+const router = useRouter();
 
-const { order_id, orders, userPrevData } = useOrdersStore();
+const cartStore = useCartStore();
+const authStore = useAuthStore();
+
+const { cart, actualCart } = cartStore;
+const {orders, userPrevData, getOrderBynum, loading } = useOrdersStore();
+
+let actualOrder = {};
+const actualOrdersItm = ref([]);
+const totalAmount = computed(() =>
+  actualOrdersItm.value.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  )
+)
+watchEffect(() => {
+  console.log("actualOrdersItm: ", actualOrdersItm.value,actualCart.value)
+});
+const order_number = route.params.order_number;
+console.log("order_number from params: ", order_number);
+
+if (order_number===undefined || !order_number.startsWith("ORD")) {
+  console.error("Invalid order number format:", order_number);
+  toast.add({ severity: 'error', summary: 'Error', detail: 'Invalid order number format.', life: 4000 });
+  router.push("/cart");  
+}
+console.error(loading.value);
+
+
 
 const loadRazorpayScript = () => {
   return new Promise((resolve, reject) => {
@@ -235,14 +265,13 @@ const loadRazorpayScript = () => {
   });
 };
 
+loadRazorpayScript().then(() => {
+  console.log("Razorpay SDK loaded");
+}).catch((error) => {
+  console.error(error);
+});
 
 
-const cartStore = useCartStore();
-// const ordersStore = useOrdersStore();
-const authStore = useAuthStore();
-
-const { cart, cartTotal, actualCart } = cartStore;
-// const { createOrder, loading: orderLoading } = ordersStore;
 
 const showLogin = ref(false);
 console.log(authStore.isAuthenticated.value, authStore.user.value?.id)
@@ -349,6 +378,42 @@ function validateShipping() {
 }
 
 const placeOrder = async () => {
+
+  toast.add({severity:'info', summary: 'Processing', detail:'Processing your order...', life: 3000});
+  
+  //this part is for getting order id from backend and passing it to razorpay payment gateway
+  let razorData;
+  try {
+    // calling cloudflare workers backend api to get order_id from razorpay
+
+    const data = {
+      razorBody: {
+        amount: totalAmount.value,
+        currency: "INR",
+      },
+    }
+    const response = await fetch('http://localhost:8787/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+      mode: 'cors'
+    })
+
+    if (!response.ok) throw new Error('Failed to create order')
+
+    const { payment_data,error } = await response.json() // if error error nothing else is deprecated
+    console.log("payment_data:", payment_data)
+    razorData = payment_data;
+    // if(error) throw new Error(error.message)
+    if (error) console.log(error);
+
+  } catch (error) {
+    console.error('Error adding orders:', error)
+  }
+
+  //this below part is for razorpay payment gateway integration 
   if (!authStore.isAuthenticated) {
     error.value = "Please log in to place an order";
     return;
@@ -363,18 +428,19 @@ const placeOrder = async () => {
 
   isProcessing.value = true;
   error.value = "";
-
+  let payload = {};
   try {
-    const razorpay = new window.Razorpay({
+    console.warn("actualOrder before payment:", actualOrder);
+    payload = {
       key: "rzp_test_RBdgGRUdVaj4hY",
-      amount: cartTotal.value * 100,
+      amount: totalAmount.value * 100, // Amount in paise
       currency: "INR",
       name: "Thivana Collections",
       description: "Order Payment",
       image: "https://thivana.pages.dev/assets/logo.jpg",
-      order_id: order_id,
+      order_id: razorData.order_id,
       handler: async (response) => {
-        console.log("Payment successful:", response);
+        console.log("Payment successful?:", response);
         updateOrderStatus(
           response,
           {
@@ -383,6 +449,7 @@ const placeOrder = async () => {
             email: authStore.user.value?.email,
             address: shippingInfo.value.address + "$$" + shippingInfo.value.city,
             postalCode: shippingInfo.value.postalCode,
+            order_id: razorData.order_id,
           }
         );
         // Handle successful payment here
@@ -399,7 +466,9 @@ const placeOrder = async () => {
       theme: {
         color: "#F37254",
       },
-    });
+    }
+    console.warn("payload for razorpay:", JSON.stringify(payload));
+    const razorpay = new window.Razorpay(payload);
 
     razorpay.open();
   } catch (error) {
@@ -411,7 +480,7 @@ const placeOrder = async () => {
 
 const updateOrderStatus = async (payment,user_data) => {
   try {
-    await fetch(`https://api.media-thivana.workers.dev/placeOrder`, {
+    const data = await fetch(`https://api.media-thivana.workers.dev/placeOrder`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -430,24 +499,57 @@ const updateOrderStatus = async (payment,user_data) => {
 };
 
 onMounted(() => {
-  if (!order_id) {
-    router.push("/cart")
-  }
-  loadRazorpayScript().then(() => {
-    console.log("Razorpay SDK loaded");
-  }).catch((error) => {
-    console.error(error);
-  });
   if (authStore.isAuthenticated && authStore.user) {
     shippingInfo.value.fullName = authStore.user.user_metadata?.full_name || "";
     shippingInfo.value.phone = authStore.user.user_metadata?.phone || "";
   }
 
   console.log("orders from checkout.vue: ", orders.value, route.params.order_number)
-  console.error("from checkout onmount",!authStore.isAuthenticated.value || !authStore.user.value?.id,authStore,authStore.isAuthenticated.value)
+  console.log("from checkout onmount",!authStore.isAuthenticated.value || !authStore.user.value?.id,authStore,authStore.isAuthenticated.value)
   console.log(authStore.isAuthenticated.value)
+  console.log(actualOrdersItm.value,actualOrdersItm.value.name)
 
-  
+  const watchLoading = watch(loading, () => {
+    console.error("loading changed:", loading.value);
+    try {
+      if (!loading.value) {
+        if (order_number) {
+          const order = getOrderBynum(order_number);
+          if (order) {
+            actualOrder = order;
+            shippingInfo.value.fullName = actualOrder.name || "";
+            shippingInfo.value.phone = actualOrder.phone || "";
+            console.warn("actualOrder after fetch:", actualOrder.address, actualOrder.postal_code,actualOrder);
+            shippingInfo.value.address = actualOrder.address?.split("$$")[0] || "";
+            shippingInfo.value.city = actualOrder.address?.split("$$")[1] || "";
+            shippingInfo.value.postalCode = actualOrder.postal_code || "";
+            actualOrdersItm.value = (order.order_items || []).map(item => ({
+              id: item.id,
+              name: item.product_name,
+              quantity: item.quantity,
+              price: item.product_price
+            }));
+            console.log("Fetched order for checkout:", order);
+          } else {
+            console.error("No order found with number:", order_number);
+            toast.add({ severity: 'error', summary: 'Error', detail: 'No order found with the provided order number.', life: 4000 });
+            router.push("/orders");
+          }
+        } else {
+          console.log("No order number provided in route params.");
+        }
+        setTimeout(() => {
+          watchLoading(); // Stop watching after initial load
+        }, 1000);
+      }
+    } catch (error) {
+        console.error("Error fetching order:", error);
+        toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to load order details.', life: 4000 });
+        router.push("/orders");
+      }
+  },
+      { immediate: true } // ✅ run once right away
+    );
 });
 
 watch(shippingInfo, validateShipping, { deep: true, immediate: true });

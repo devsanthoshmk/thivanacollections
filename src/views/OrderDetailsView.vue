@@ -37,11 +37,21 @@
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 card-modern" data-aos="fade-up">
           <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
             <div>
-              <h2 class="font-serif text-3xl font-bold mb-2">Order #{{ order.order_number }}</h2>
+              <h2 class="font-serif text-3xl font-bold mb-2">
+                Order #{{ order.order_number }}
+                <router-link v-if=" formatStatus(order.status) === 'Not Paid'" :to="`/checkout/${order.order_number}`">
+                  <span class=" font-[300] text-lg text-accent hover:underline">(Click to Pay)</span>
+                </router-link>
+              </h2>
               <p class="text-gray-600 dark:text-gray-400">Placed on {{ formatDate(order.created_at) }}</p>
             </div>
             <div class="mt-4 md:mt-0">
-              <span :class="getStatusClass(order.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
+                <router-link v-if=" formatStatus(order.status) === 'Not Paid'" :to="`/checkout/${order.order_number}`">
+                  <span :class="getStatusClass(order.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
+                    {{ formatStatus(order.status) }}
+                  </span>
+                </router-link>
+              <span v-else :class="getStatusClass(order.status)" class="px-3 py-1 rounded-full text-sm font-semibold">
                 {{ formatStatus(order.status) }}
               </span>
             </div>
@@ -50,12 +60,16 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 class="font-serif text-xl font-bold mb-4">Shipping Information</h3>
-              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">{{ order.shipping_address }}</p>
+              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">Address: {{ order.address.split('$$')[0] }}</p>
+              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">City: {{ order.address.split('$$')[1] }}</p>
+              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">Postal Code: {{ order.postal_code }}</p>
+              <p class="text-gray-600 dark:text-gray-400 mt-2">Phone: {{ order.phone }}</p>
+              <p class="text-gray-600 dark:text-gray-400">Email: {{ email }}</p>
             </div>
             <div>
               <h3 class="font-serif text-xl font-bold mb-4">Payment Information</h3>
-              <p class="text-gray-600 dark:text-gray-400">Method: {{ order.payment_method }}</p>
-              <p class="text-gray-600 dark:text-gray-400">Total: ${{ order.total_amount.toFixed(2) }}</p>
+              <p class="text-gray-600 dark:text-gray-400">Status: {{ formatStatus(order.status) === "Not Paid" ? "Not Paid" : "Paid" }}</p>
+              <p class="text-gray-600 dark:text-gray-400">Total: ₹{{ order.total_amount.toFixed(2) }}</p>
             </div>
           </div>
         </div>
@@ -63,9 +77,9 @@
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8 card-modern" data-aos="fade-up" data-aos-delay="100">
           <h3 class="font-serif text-xl font-bold mb-4">Order Items</h3>
           <div class="space-y-4">
-            <div v-for="item in order.items" :key="item.id" class="flex items-center border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
+            <div v-for="item in order.order_items" :key="item.id" class="flex items-center border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
               <div class="img-hover-zoom rounded-lg overflow-hidden mr-4">
-                <img :src="'/' + item.product_image" :alt="item.product_name" class="w-16 h-16 object-cover">
+                <img :src="products[item.product_id]?.images[item.product_image_index]" :alt="item.product_name" class="w-16 h-16 object-cover">
               </div>
               <div class="flex-grow">
                 <h4 class="font-bold">{{ item.product_name }}</h4>
@@ -82,17 +96,21 @@
           <h3 class="font-serif text-xl font-bold mb-4">Order Timeline</h3>
           <div class="space-y-4">
             <div class="flex items-start">
-              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                <vue-feather type="check" class="h-4 w-4 text-green-600"></vue-feather>
+              <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3" :class="{ 'bg-red-100': formatStatus(order.status) === 'Not Paid' }">
+                <vue-feather v-if="formatStatus(order.status) === 'Not Paid'" type="alert-octagon" class="h-4 w-4 text-red-600"></vue-feather>
+                <vue-feather v-else type="check-circle" class="h-4 w-4 text-green-600"></vue-feather>
               </div>
               <div>
-                <p class="font-medium">Order Placed</p>
+                <router-link v-if=" formatStatus(order.status) === 'Not Paid'" :to="`/checkout/${order.order_number}`">
+                  <p class="font-medium"> Order Not Yet Placed (Payment Pending)</p>
+                </router-link>
+                <p v-else class="font-medium"> Order Placed</p>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">{{ formatDate(order.created_at) }}</p>
               </div>
             </div>
             
-            <div class="flex items-start" :class="{ 'opacity-50': order.status === 'pending' }">
-              <div class="flex-shrink-0 w-8 h-8 rounded-full" :class="order.status !== 'pending' ? 'bg-green-100' : 'bg-gray-200 dark:bg-gray-700'">
+            <div class="flex items-start" :class="{ 'opacity-20': order.status === 'pending' }">
+              <div class="flex-shrink-0 w-8 h-8 rounded-full items-center flex mr-3" :class="order.status !== 'pending' ? 'bg-green-100' : 'bg-gray-200 dark:bg-gray-700'">
                 <vue-feather type="package" class="h-4 w-4 mx-auto" :class="order.status !== 'pending' ? 'text-green-600' : 'text-gray-400'"></vue-feather>
               </div>
               <div>
@@ -101,8 +119,8 @@
               </div>
             </div>
             
-            <div class="flex items-start" :class="{ 'opacity-50': !['shipped', 'delivered'].includes(order.status) }">
-              <div class="flex-shrink-0 w-8 h-8 rounded-full" :class="['shipped', 'delivered'].includes(order.status) ? 'bg-green-100' : 'bg-gray-200 dark:bg-gray-700'">
+            <div class="flex items-start" :class="{ 'opacity-20': !['shipped', 'delivered'].includes(order.status) }">
+              <div class="flex items-center flex-shrink-0 w-8 h-8 rounded-full mr-3" :class="['shipped', 'delivered'].includes(order.status) ? 'bg-green-100' : 'bg-gray-200 dark:bg-gray-700'">
                 <vue-feather type="truck" class="h-4 w-4 mx-auto" :class="['shipped', 'delivered'].includes(order.status) ? 'text-green-600' : 'text-gray-400'"></vue-feather>
               </div>
               <div>
@@ -111,8 +129,8 @@
               </div>
             </div>
             
-            <div class="flex items-start" :class="{ 'opacity-50': order.status !== 'delivered' }">
-              <div class="flex-shrink-0 w-8 h-8 rounded-full" :class="order.status === 'delivered' ? 'bg-green-100' : 'bg-gray-200 dark:bg-gray-700'">
+            <div class="flex items-start" :class="{ 'opacity-20': order.status !== 'delivered' }">
+              <div class="flex items-center flex-shrink-0 w-8 h-8 rounded-full mr-3" :class="order.status === 'delivered' ? 'bg-green-100' : 'bg-gray-200 dark:bg-gray-700'">
                 <vue-feather type="home" class="h-4 w-4 mx-auto" :class="order.status === 'delivered' ? 'text-green-600' : 'text-gray-400'"></vue-feather>
               </div>
               <div>
@@ -135,19 +153,30 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import Button from 'primevue/button'
 import VueFeather from 'vue-feather'
 import { useOrdersStore } from '../store/orders'
+import { useAuthStore } from '../store/auth'
+import { useProductsStore } from '@/store/products'
+
+const authStore = useAuthStore()
+const productsStore = useProductsStore()
+const { products } = productsStore
+
+const email = computed(() => authStore?.user?.value?.email || '')
 
 const route = useRoute()
 const ordersStore = useOrdersStore()
-const { orders, loading, error, loadOrders } = ordersStore
+const { orders, loading, error } = ordersStore
 
 const order = computed(() => {
-  return orders.value.find(o => o.id === route.params.id)
+  return orders.value.find(o => o.order_number === route.params.order_number)
 })
+watchEffect(() => {
+  console.error("Current order:", order.value,orders.value, route.params.order_number,products.value)
+})  
 
 const formatDate = (dateString) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -155,7 +184,16 @@ const formatDate = (dateString) => {
 }
 
 const formatStatus = (status) => {
-  return status.charAt(0).toUpperCase() + status.slice(1)
+  let before = "";
+  if (status.toLowerCase() === 'pending') {
+    status = 'Not Paid'
+    before = ""
+  } else if (status.toLowerCase() === 'paid' || status.toLowerCase() === 'processing') {
+    before = status + "/"
+    status = 'Processing'
+  }
+
+  return before + status.charAt(0).toUpperCase() + status.slice(1)
 }
 
 const getStatusClass = (status) => {
@@ -175,7 +213,4 @@ const getStatusClass = (status) => {
   }
 }
 
-onMounted(() => {
-  loadOrders()
-})
 </script>
