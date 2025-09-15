@@ -60,9 +60,9 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 class="font-serif text-xl font-bold mb-4">Shipping Information</h3>
-              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">Address: {{ order.address.split('$$')[0] }}</p>
-              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">City: {{ order.address.split('$$')[1] }}</p>
-              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">Postal Code: {{ order.postal_code }}</p>
+              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">Address: {{ order.address?.split('$$')[0] }}</p>
+              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">City: {{ order.address?.split('$$')[1] }}</p>
+              <p class="text-gray-600 dark:text-gray-400 whitespace-pre-line">Postal Code: {{ order?.postal_code }}</p>
               <p class="text-gray-600 dark:text-gray-400 mt-2">Phone: {{ order.phone }}</p>
               <p class="text-gray-600 dark:text-gray-400">Email: {{ email }}</p>
             </div>

@@ -226,7 +226,7 @@ const cartStore = useCartStore();
 const authStore = useAuthStore();
 
 const { cart, actualCart } = cartStore;
-const {orders, userPrevData, getOrderBynum, loading } = useOrdersStore();
+const {orders, userPrevData, getOrderBynum, loading,loadOrders } = useOrdersStore();
 
 let actualOrder = {};
 const actualOrdersItm = ref([]);
@@ -425,6 +425,7 @@ const placeOrder = async () => {
     error.value = "Please fill in all required fields";
     return;
   }
+  console.error("razorData.id",razorData.id)
 
   isProcessing.value = true;
   error.value = "";
@@ -433,17 +434,18 @@ const placeOrder = async () => {
     console.warn("actualOrder before payment:", actualOrder);
     payload = {
       key: "rzp_test_RBdgGRUdVaj4hY",
-      amount: totalAmount.value * 100, // Amount in paise
+      amount: totalAmount.value * 10000, // Amount in paise
       currency: "INR",
       name: "Thivana Collections",
       description: "Order Payment",
       image: "https://thivana.pages.dev/assets/logo.jpg",
-      order_id: razorData.order_id,
+      order_id: razorData.id,
       handler: async (response) => {
         console.log("Payment successful?:", response);
-        updateOrderStatus(
+        await updateOrderStatus(
           response,
           {
+            id: actualOrder.id,
             name: shippingInfo.value.fullName,
             phone: shippingInfo.value.phone,
             email: authStore.user.value?.email,
@@ -454,6 +456,13 @@ const placeOrder = async () => {
         );
         // Handle successful payment here
         //handle cloudflare payment verification and order status and detals updation
+        await loadOrders();
+        const finorder = orders.value.find(o => o.id === actualOrder.id);
+
+        if (finorder && finorder.status === "paid") {
+              toast.add({severity:'success', summary: 'Order Placed', detail:'Your order has been placed successfully!', life: 6000});
+              router.push("/orders/"+actualOrder.order_number)
+        }
       },
       prefill: {
         name: shippingInfo.value.fullName,
@@ -480,7 +489,7 @@ const placeOrder = async () => {
 
 const updateOrderStatus = async (payment,user_data) => {
   try {
-    const data = await fetch(`https://api.media-thivana.workers.dev/placeOrder`, {
+    const data = await fetch(`http://localhost:8787/placeOrder`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -491,8 +500,6 @@ const updateOrderStatus = async (payment,user_data) => {
        }),
     });
     console.log("Order status updated to:", data);
-    toast.add({severity:'success', summary: 'Order Placed', detail:'Your order has been placed successfully!', life: 6000});
-    router.push("/orders");
   } catch (err) {
     console.error("Failed to update order status:", err);
   }
