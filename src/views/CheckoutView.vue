@@ -388,7 +388,7 @@ const placeOrder = async () => {
 
     const data = {
       razorBody: {
-        amount: totalAmount.value,
+        amount: totalAmount.value * 100,
         currency: "INR",
       },
     }
