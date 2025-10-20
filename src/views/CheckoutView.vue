@@ -392,7 +392,7 @@ const placeOrder = async () => {
         currency: "INR",
       },
     }
-    const response = await fetch('api.media-thivana.workers.dev/orders', {
+    const response = await fetch('https://api.media-thivana.workers.dev/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
