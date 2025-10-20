@@ -45,11 +45,11 @@ const router = createRouter({
       name: 'contact',
       component: ContactView
     },
-    {
-      path: '/checkout',
-      name: 'checkout-base',
-      component: CheckoutView,
-    },
+    // {
+    //   path: '/checkout',
+    //   name: 'checkout-base',
+    //   component: CheckoutView,
+    // },
     {
       path: '/checkout/:order_number',
       name: 'checkout',

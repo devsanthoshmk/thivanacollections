@@ -392,7 +392,7 @@ const placeOrder = async () => {
         currency: "INR",
       },
     }
-    const response = await fetch('http://localhost:8787/orders', {
+    const response = await fetch('api.media-thivana.workers.dev/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -489,7 +489,7 @@ const placeOrder = async () => {
 
 const updateOrderStatus = async (payment,user_data) => {
   try {
-    const data = await fetch(`http://localhost:8787/placeOrder`, {
+    const data = await fetch(`api.media-thivana.workers.dev/placeOrder`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
