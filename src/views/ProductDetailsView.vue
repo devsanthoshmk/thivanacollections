@@ -85,7 +85,7 @@
               <vue-feather type="shopping-cart" class="h-5 w-5 mr-2"></vue-feather>
               <span>Add to Cart</span>
             </Button>
-            <Button @click="buyNowWithQuantity" class="btn-modern flex-1 p-button-lg bg-accent border-accent flex items-center justify-center">
+            <Button @click="addOrders" :loading="ischeckoutbtnloading" class="btn-modern flex-1 p-button-lg bg-accent border-accent flex items-center justify-center">
               <vue-feather type="zap" class="h-5 w-5 mr-2"></vue-feather>
               <span>Buy Now</span>
             </Button>
@@ -244,7 +244,6 @@ import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useProductsStore } from '../store/products'
 import { useCartStore } from '../store/cart'
-import Carousel from 'primevue/carousel';
 import Button from 'primevue/button';
 import ProductCard from '../components/ProductCard.vue'
 import VueFeather from 'vue-feather';
@@ -253,14 +252,22 @@ import TabList from 'primevue/tablist';
 import Tab from 'primevue/tab';
 import TabPanels from 'primevue/tabpanels';
 import TabPanel from 'primevue/tabpanel';
+import { useAuthStore } from "/src/store/auth.js";
+import { useOrdersStore } from '@/store/orders';
+
+const ordersStore = useOrdersStore()
+const { loadOrders, orders } = ordersStore
+const authStore = useAuthStore()
+
 
 const route = useRoute()
 const router = useRouter()
-const { getProductById, getProductsByCategory } = useProductsStore()
-const { addToCart } = useCartStore()
+const { products, getProductById, getProductsByCategory } = useProductsStore()
+const { addToCart,actualCart } = useCartStore()
 
 const activeImageIndex = ref(0)
 const quantity = ref(1)
+const ischeckoutbtnloading = ref(false);
 
 const product = computed(() => {
   const productsStore = useProductsStore();
@@ -297,5 +304,59 @@ const buyNowWithQuantity = () => {
 const buyNow = (product) => {
   addToCartWithQuantity()
   router.push('/checkout')
+}
+const addOrders = async () => {
+  ischeckoutbtnloading.value = true
+  const order = { product_id: product.value.id, quantity: quantity.value, product_image_index: activeImageIndex.value }
+  const actualOrder = {
+    ...order,
+    ...products.value[order.product_id],
+    total: (products.value[order.product_id]?.price ?? 0) * order.quantity
+  }
+
+  const data = {
+    // body: {
+    //   amount: cartTotal.value,
+    //   currency: "INR",
+    // }, giveing order id is deprecated
+    order: {
+      user_id: authStore.user.value?.id,
+      total_amount: actualOrder.total
+    },
+    order_items: [{
+      product_id: actualOrder.id,
+      product_name: actualOrder.name,
+      product_price: actualOrder.price,
+      quantity: actualOrder.quantity,
+      product_image_index: actualOrder.product_image_index,
+    }]
+  };
+  console.log("curl body:", JSON.stringify(data))
+      console.log("orders and order_items:", data)
+  try {
+    // old:calling cloudflare workers backend api to get order_id from razorpay and update supa db orders table
+    const response = await fetch('https://api.media-thivana.workers.dev/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    if (!response.ok) throw new Error('Failed to create order')
+
+    const { error } = await response.json() // if error error nothing else is deprecated
+    // console.log("payment_data:", payment_data)
+    // if(error) throw new Error(error.message)
+    if (error) console.log(error);
+
+  } catch (error) {
+    console.error('Error adding orders:', error)
+  } finally {
+    ischeckoutbtnloading.value = false
+    await loadOrders()
+    router.push('/checkout/' + orders.value[0].order_number)
+
+  }
 }
 </script>

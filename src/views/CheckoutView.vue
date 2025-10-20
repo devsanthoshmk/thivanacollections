@@ -34,13 +34,13 @@
 
       </div>
       
-        <div v-if="cart.length === 0" class="text-center py-24" data-aos="fade-up">
+        <div v-if="actualOrdersItm.length === 0" class="text-center py-24" data-aos="fade-up">
           <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-accent/10 mb-6">
             <vue-feather type="shopping-cart" class="h-12 w-12 text-accent"></vue-feather>
           </div>
-          <h2 class="font-serif text-4xl font-bold mb-4">Your cart is empty</h2>
+          <h2 class="font-serif text-4xl font-bold mb-4">Your order is empty</h2>
           <p class="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-8">
-            Add some items to your cart to proceed with checkout.
+            Add some items to your order to proceed with checkout.
           </p>
           <router-link to="/shop">
             <Button label="Continue Shopping" class="p-button-lg btn-modern flex items-center justify-center">
@@ -461,7 +461,8 @@ const placeOrder = async () => {
 
         if (finorder && finorder.status === "paid") {
               toast.add({severity:'success', summary: 'Order Placed', detail:'Your order has been placed successfully!', life: 6000});
-              router.push("/orders/"+actualOrder.order_number)
+              router.push("/orders/" + actualOrder.order_number)
+              cartStore.clearCart();              
         }
       },
       prefill: {
@@ -489,7 +490,7 @@ const placeOrder = async () => {
 
 const updateOrderStatus = async (payment,user_data) => {
   try {
-    const data = await fetch(`api.media-thivana.workers.dev/placeOrder`, {
+    const data = await fetch(`https://api.media-thivana.workers.dev/placeOrder`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

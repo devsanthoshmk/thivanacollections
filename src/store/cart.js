@@ -97,6 +97,7 @@ export const useCartStore = () => {
     if (!authStore.isAuthenticated.value || !authStore.user.value?.id) return
 
     const localCart = localStorage.getItem('cart')
+
     if (!localCart) return
 
     try {
@@ -157,8 +158,7 @@ export const useCartStore = () => {
       // Clear local cart after successful sync
       localStorage.removeItem('cart')
 
-      // Reload cart from database
-      await loadCart()
+      
 
     } catch (err) {
       error.value = err.message
@@ -331,6 +331,7 @@ export const useCartStore = () => {
     if (!authStore.isAuthenticated.value) {
       localStorage.removeItem('cart')
     }
+    syncLocalCartToDatabase()
   }
 
   // Save cart to localStorage when user logs out
